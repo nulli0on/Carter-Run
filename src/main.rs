@@ -34,7 +34,7 @@ const WAVE_LENGTH: f32 = 35.0;
 const CAMPAIGN_VICTORY_DAY: u32 = 20;
 const SUGAR_DETONATION_SECONDS: f32 = 75.0;
 
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Screen {
     Office,
     Computer,
