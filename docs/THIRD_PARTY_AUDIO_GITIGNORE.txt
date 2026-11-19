@@ -1,0 +1,2 @@
+# Third-party sound recordings: don't publish to a public repo until licensed
+/assets/sfx/imported/*.mp3
