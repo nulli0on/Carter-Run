@@ -1,0 +1,21 @@
+[package]
+name = "run-carter"
+version = "0.13.0"
+edition = "2021"
+description = "RUN CARTER CarterOS, AmazonCrime arsenal, and event-driven audio (Rust + raylib)"
+
+[features]
+default = []
+steam = []
+
+[dependencies]
+raylib = "6.0"
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+codegen-units = 1
+strip = true
