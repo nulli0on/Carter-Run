@@ -6,5 +6,8 @@ __pycache__/
 # The original models are third-party uploads. Verify redistribution licenses
 # before pushing these binaries to this public repository.
 /assets/arsenal/*.glb
+/assets/office_original_textures_complete.glb
+# Third-party MP3s: verify each commercial redistribution license first.
+/assets/sfx/imported/*.mp3
 # Keep original design source private until publication terms are approved.
 /design_reference/*.fig.zip
