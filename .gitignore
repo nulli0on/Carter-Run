@@ -3,11 +3,12 @@ target/
 *.log
 __pycache__/
 *.pyc
-# The original models are third-party uploads. Verify redistribution licenses
-# before pushing these binaries to this public repository.
+# Third-party 3D models; verify individual redistribution rights first.
 /assets/arsenal/*.glb
 /assets/office_original_textures_complete.glb
-# Third-party MP3s: verify each commercial redistribution license first.
+# Audio origin is confirmed by owner as Pixabay. Commercial in-game use is
+# broadly licensed; unchanged standalone redistribution can be prohibited.
+# Keep raw MP3 files out of this public repository.
 /assets/sfx/imported/*.mp3
-# Keep original design source private until publication terms are approved.
+# Original editable design sources: verify publication rights first.
 /design_reference/*.fig.zip
