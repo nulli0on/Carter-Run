@@ -1502,7 +1502,8 @@ mod game_tests {
         let mut g=Game::new();
         g.buy(1);
         g.audio_events.take(); // discard purchase SFX
-        g.tick(21.0);
+        g.orders[0].eta=0.04;
+        g.tick(0.05); // model a normal frame instead of skipping 21 seconds in one frame
         assert!(g.ready_deliveries()>0);
         assert!(!g.delivery_notice);
         assert_eq!(g.audio_events.take(),vec![Cue::Delivery]);
