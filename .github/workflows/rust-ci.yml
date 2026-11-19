@@ -45,6 +45,8 @@ jobs:
           else
             echo 'Third-party models withheld pending redistribution-license review.'
           fi
+      - name: Exact Figma PNG hash verification
+        run: python3 tools/verify_carteros_artwork.py
       - name: Test Rust code
         run: cargo test
       - name: Compile release binary
