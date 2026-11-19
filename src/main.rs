@@ -687,7 +687,10 @@ impl Game {
                 if order.eta<=0.0 {order.ready=true;self.delivery_notice=true;self.audio_events.push(Cue::Delivery);}
             }
         }
-        if self.delivery_notice {self.message=String::from("AmazonCrime package delivered! Collect it at the front door (F).");self.message_seconds=6.0;}
+        if self.delivery_notice {
+            self.delivery_notice=false;
+            self.inform("AmazonCrime package delivered! Collect it at the front door (F).");
+        }
         self.message_seconds = (self.message_seconds - dt).max(0.0);
         self.phone_cooldown=(self.phone_cooldown-dt).max(0.0);
         if let Some(mut d) = self.decoy {
@@ -874,6 +877,13 @@ fn handle_os_action(a:OsAction,g:&mut Game,os:&CarterOs){
 }
 
 fn main() {
+    // CI-only bounded visual startup check: actual raylib window, no fake render path.
+    // Normal gameplay stays unchanged unless this explicit argument is supplied.
+    let smoke_frames=std::env::args().filter_map(|a|{
+        a.strip_prefix("--smoke-frames=").and_then(|s|s.parse::<u32>().ok())
+    }).find(|n|(1..=1200).contains(n));
+    let smoke_desktop=smoke_frames.is_some() && std::env::args().any(|a|a=="--smoke-desktop");
+    let mut rendered_frames=0u32;
     let (mut rl, thread)=raylib::init()
         .size(carteros::W,carteros::H)
         .title("RUN CARTER | CarterOS Figma edition")
@@ -917,6 +927,7 @@ fn main() {
     let mut previous_alarm=false;
     let mut last_preset=2u8;
     let mut game=Game::from_save();
+    if smoke_desktop{ game.screen=Screen::Computer; }
     let steam=steam_bridge::Bridge::new();
     let mut steam_retry=5.0f32;
     let mut cursor_on=false;
@@ -929,6 +940,8 @@ fn main() {
     let mut integrity_elapsed=0.0f32;
     let (mut ui_pan_x,mut ui_pan_y)=(0.0f32,0.0f32);
     while !rl.window_should_close(){
+        if smoke_frames.is_some_and(|n|rendered_frames>=n){break;}
+        rendered_frames=rendered_frames.saturating_add(1);
         let dt=rl.get_frame_time().min(0.05);
         game.audio_events.advance(dt);
         steam.tick();
@@ -1325,6 +1338,13 @@ fn main() {
             d.draw_text(&format!("> {}_",console.buffer),25,dh.min(245),18,Color::GREEN);
         }
     }
+    if let Some(expected)=smoke_frames {
+        if rendered_frames!=expected {
+            eprintln!("RUN_CARTER_SMOKE_FAIL frames={rendered_frames} expected={expected}");
+            std::process::exit(1);
+        }
+        println!("RUN_CARTER_SMOKE_OK frames={rendered_frames} screen={}",if smoke_desktop{"desktop"}else{"office"});
+    }
 }
 
 #[cfg(test)]
@@ -1476,6 +1496,21 @@ mod game_tests {
         g.money=1;
         g.buy(5);
         assert!(g.audio_events.take().contains(&Cue::ShopDenied));
+    }
+    #[test]
+    fn delivery_notice_only_fires_once_and_message_expires() {
+        let mut g=Game::new();
+        g.buy(1);
+        g.audio_events.take(); // discard purchase SFX
+        g.tick(21.0);
+        assert!(g.ready_deliveries()>0);
+        assert!(!g.delivery_notice);
+        assert_eq!(g.audio_events.take(),vec![Cue::Delivery]);
+        assert!(g.message.contains("package delivered"));
+        let first=g.message_seconds;
+        g.tick(0.25);
+        assert!(g.message_seconds<first,"delivery message must not reset every frame");
+        assert!(g.audio_events.take().is_empty());
     }
     #[test]
     fn snapshot_captures_campaign_orders() {
