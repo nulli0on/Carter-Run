@@ -1443,9 +1443,14 @@ mod game_tests {
     }
     #[test]
     fn all_arsenal_gadgets_are_purchasable(){
-        let mut g=Game::new();g.achievements=Tracker::default();g.money=2000;
+        let mut g=Game::new();g.achievements=Tracker::default();g.money=20_000;
         for item in [1,5,6,7]{g.buy(item);}
         assert_eq!((g.airhorns,g.confetti_cannons,g.drones),(1,1,1));
+        // Utility gadgets alone are NOT the full ten-item armory.
+        assert!(!g.achievements.has("FULL_ARSENAL_ZERO_WASTE"));
+        for index in 1..arsenal::COUNT {g.buy(arsenal::FIRST_SHOP_ID+index as i32);}
+        assert!(g.arsenal.all_owned());
+        assert!(g.money>0);
         assert!(g.achievements.has("FULL_ARSENAL_ZERO_WASTE"));
         g.use_airhorn();g.use_confetti();g.deploy_drone();
         assert_eq!((g.airhorns,g.confetti_cannons,g.drones),(0,0,0));
