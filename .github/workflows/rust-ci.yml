@@ -30,7 +30,7 @@ jobs:
       - name: raylib dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake clang pkg-config libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev
+          sudo apt-get install -y cmake clang pkg-config libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev xvfb xauth
       - name: Source audits
         run: |
           if [[ -f assets/office_original_textures_complete.glb && -f assets/carteros/desktop_bg.png ]]; then
@@ -51,6 +51,20 @@ jobs:
         run: cargo test
       - name: Compile release binary
         run: cargo build --release
+      - name: Windowed startup smoke — office
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          ALSOFT_DRIVERS: "null"
+        run: |
+          timeout 60s xvfb-run -a -s '-screen 0 1600x1000x24' \
+            ./target/release/run-carter --smoke-frames=16
+      - name: Windowed startup smoke — CarterOS boot
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          ALSOFT_DRIVERS: "null"
+        run: |
+          timeout 60s xvfb-run -a -s '-screen 0 1600x1000x24' \
+            ./target/release/run-carter --smoke-frames=16 --smoke-desktop
       - uses: actions/upload-artifact@v4
         if: success()
         with:
