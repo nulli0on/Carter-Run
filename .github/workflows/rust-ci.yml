@@ -1,0 +1,63 @@
+name: RUN CARTER Rust CI
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  detect-source:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for actual game source
+        id: check
+        shell: bash
+        run: |
+          if [[ -f Cargo.toml && -f src/main.rs ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Rust game source found."
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Game source has not yet been uploaded; cannot compile an empty repo."
+          fi
+  build-and-test:
+    needs: detect-source
+    if: needs.detect-source.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install raylib native dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake clang pkg-config libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev
+      - name: Install Pillow for optional artwork tests
+        run: python3 -m pip install --break-system-packages pillow
+      - name: Verify original Figma assets (when included)
+        run: |
+          if [[ -f tools/verify_figma_fidelity.py && -f assets/carteros/desktop_bg.png ]]; then
+            python3 tools/verify_figma_fidelity.py
+          else
+            echo "Original artwork not included; skipping image hash check."
+          fi
+      - name: Verify GLB assets (when license-approved and uploaded)
+        run: |
+          if [[ -f assets/arsenal/manifest.json && -f assets/arsenal/arms.glb ]]; then
+            python3 tools/verify_arsenal_assets.py
+          else
+            echo "Third-party GLBs not in repository; skipping binary checks."
+          fi
+      - name: Rust tests
+        run: cargo test
+      - name: Release build
+        run: cargo build --release
+      - name: Upload build logs and executable
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: run-carter-linux-binary
+          path: target/release/run-carter
+          if-no-files-found: warn
