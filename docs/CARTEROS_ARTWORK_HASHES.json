@@ -1,0 +1,185 @@
+{
+  "description": "Exact PNGs extracted from original user Figma SVG; never redrawn or recompressed",
+  "files": [
+    {
+      "file": "boot_screen.png",
+      "bytes": 575250,
+      "sha256": "0e33091412dc0088ad01353fe058eabc5adee4bdbb52a3fc00f84222e01d0e3f"
+    },
+    {
+      "file": "cartermail_window.png",
+      "bytes": 49210,
+      "sha256": "bdac5a3960e6aa773f4f25e0341948abf4c12cb8354daa55e3b117b11aaac3a2"
+    },
+    {
+      "file": "carterweb_inactive.png",
+      "bytes": 35354,
+      "sha256": "b4a6ed8e026523f0099eb0c3a3821cfb34ecea64f196a9703006f7554e00a035"
+    },
+    {
+      "file": "context_menu.png",
+      "bytes": 21791,
+      "sha256": "6037afe75e0fd8b53b9efa18eb3cdaa5cbccd4b341953be557629f02448219d6"
+    },
+    {
+      "file": "desktop_bg.png",
+      "bytes": 783486,
+      "sha256": "2dc3b7edb0c35c854d18760c395fcf519c47b48bc9a14d9d0d1174e4158cca6c"
+    },
+    {
+      "file": "desktop_widgets.png",
+      "bytes": 81348,
+      "sha256": "c76a76891b5d3b8ead18f35e305b6ce173bfb3ccaab447167cc27244cd26b75d"
+    },
+    {
+      "file": "dock.png",
+      "bytes": 31838,
+      "sha256": "3d9fcf289d2b0bf2c0ca2c46d2131cfe0938ddcbaf5e401871c98565f25a3b71"
+    },
+    {
+      "file": "files_window.png",
+      "bytes": 88562,
+      "sha256": "45ecc07166249386db62f15e7274e7886d88ec64617d1a63012adce1282c2e96"
+    },
+    {
+      "file": "full_frame_01.png",
+      "bytes": 871880,
+      "sha256": "50808b47ca81556b0ba36c57c391f7b9d007158ea60ed4d12b76dda57f87aa01"
+    },
+    {
+      "file": "full_frame_02.png",
+      "bytes": 855714,
+      "sha256": "fba7a1bb967e2bbb3e887e4f5b1dee94602170417b13b5ee3e1f70d21f926294"
+    },
+    {
+      "file": "full_frame_04.png",
+      "bytes": 498564,
+      "sha256": "8d895a352a0cb4bf48ea0b8f1299bc800b4e46db604f32a79ca89a637396d095"
+    },
+    {
+      "file": "full_frame_05.png",
+      "bytes": 582394,
+      "sha256": "fc6e7f0ffa73e9f57b8afbc39d72c53991e21fe375c7973659084085a152c5dd"
+    },
+    {
+      "file": "full_frame_06.png",
+      "bytes": 568540,
+      "sha256": "9907e3d60c26cc77bb281c113d6f1303f63a755a6755244e9c07781fd4aacc81"
+    },
+    {
+      "file": "full_frame_07.png",
+      "bytes": 570723,
+      "sha256": "01ecc42ca95194dc7be902254fc992f994df5e7ce2c9b1660fee9b5b2614a92d"
+    },
+    {
+      "file": "full_frame_08.png",
+      "bytes": 586094,
+      "sha256": "07826ae121e25e91407b5eb060f0b7c27bcf7ac7e14a9a0a9c4965c229430704"
+    },
+    {
+      "file": "full_frame_09.png",
+      "bytes": 626447,
+      "sha256": "136e17b6b587c6ac1041ba3417085be72a97f7ff4c5f04a690daa6dbba3cf422"
+    },
+    {
+      "file": "full_frame_10.png",
+      "bytes": 569312,
+      "sha256": "d008b674393df01fc22604652a79d17260621b09036ede0944497b8c7a0dda1c"
+    },
+    {
+      "file": "full_frame_11.png",
+      "bytes": 894420,
+      "sha256": "7b57afd22b19ef74e2a1a3d017cc9ecf36be17f7a6cf66ae69da22f4cbb51847"
+    },
+    {
+      "file": "full_frame_12.png",
+      "bytes": 647188,
+      "sha256": "fb9de4fdd309501f9b1986868035a2c2e6a138d37f774227fec9f5c7700e02a6"
+    },
+    {
+      "file": "full_frame_14.png",
+      "bytes": 727024,
+      "sha256": "cab88103f78d6cefb5abd373b2f1ef3d55216379a83dd3d656b61fc849938c23"
+    },
+    {
+      "file": "launchpad.png",
+      "bytes": 767645,
+      "sha256": "b3a1592db4cd86556e1b22df5e349cfeff2cd772ff338178421b1bd7b3eaeff4"
+    },
+    {
+      "file": "leak_banner.png",
+      "bytes": 14093,
+      "sha256": "b5ac667bb16a6a897fde7d2d412cc491104e58cbc5d60bbf83b58d058a943bea"
+    },
+    {
+      "file": "leak_bg.png",
+      "bytes": 756173,
+      "sha256": "52aa75c4cbdc51a653378381d7884f8d173a49890de51eecafc49c8e0d1dca60"
+    },
+    {
+      "file": "leak_modal.png",
+      "bytes": 46118,
+      "sha256": "ba367f41b5fe014a8be0a52b0eae59c2c179648944c809dfc2988c22c7b24e1f"
+    },
+    {
+      "file": "leak_radar.png",
+      "bytes": 14262,
+      "sha256": "238546d55084a6aee779901a693df8cdf47ba6ac1af2662f049a389aad027d71"
+    },
+    {
+      "file": "lock_screen.png",
+      "bytes": 814613,
+      "sha256": "99138b6383c7ca5058c1173d70e9c9c17c9f885eb206ad299729f8b8c84a498c"
+    },
+    {
+      "file": "menu_bar.png",
+      "bytes": 13523,
+      "sha256": "c70a07b56d9f3ee58738303ef7f1e3da2c45a27a72c9d1f28453fb438085ddfd"
+    },
+    {
+      "file": "notification_center.png",
+      "bytes": 67780,
+      "sha256": "cf32b5d1a32240be076698f687edbd639e8d6ac9b2e374f0fb57294305c3f09c"
+    },
+    {
+      "file": "settings_display.png",
+      "bytes": 104720,
+      "sha256": "c50ba7f21e411b5293a1579458ed9ac0fb5190686fe4be6995c657ae1ba33419"
+    },
+    {
+      "file": "settings_network.png",
+      "bytes": 90621,
+      "sha256": "306f25e9dc9d353140c35a295824f4edf141fcc0204c7f2f4d29f44536d4c46e"
+    },
+    {
+      "file": "settings_personalization.png",
+      "bytes": 145022,
+      "sha256": "6fb32f4f0f4e4489fbef10ce9258cfea4c4ceed697ec52ef53b496ca7a48cf5b"
+    },
+    {
+      "file": "settings_privacy.png",
+      "bytes": 104164,
+      "sha256": "80a109d49720944068406bc66fc8da8f78d1b6b2221e4022327b86e19307d03e"
+    },
+    {
+      "file": "settings_sound.png",
+      "bytes": 88609,
+      "sha256": "a3a8a8f2a766bc0b566891fb07160d50505c3eecfa270c536088619edd2cb27f"
+    },
+    {
+      "file": "toggle_off.png",
+      "bytes": 998,
+      "sha256": "00c22ec8116ca2ef822b87add4aaac5a3bfd6b674aaea1a499e7582a93562bb1"
+    },
+    {
+      "file": "toggle_on.png",
+      "bytes": 1120,
+      "sha256": "7dee93c291c33276e75469f7acc9f0cecf6d899ae29019ced45512d384400f98"
+    },
+    {
+      "file": "wallpaper_after_hours.png",
+      "bytes": 626650,
+      "sha256": "856d66ee64de3f56acf294a830828eb9013c4eabb009760676e108bf48f48db9"
+    }
+  ]
+}

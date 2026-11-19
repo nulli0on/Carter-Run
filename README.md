@@ -1,27 +1,52 @@
-# RUN CARTER — Rust + CarterOS
+# RUN CARTER v0.13 — AmazonCrime Arsenal & Imported 3D Models
 
-Development repository for the first-person comedy-survival game RUN CARTER.
+**Rust + raylib source prototype. Not a verified runnable release.** v0.11 builds on v0.10. The original CarterOS Figma artwork is unchanged. See `README_V11_ASSET_IMPORT.md` for 15 unique 3D models, model provenance, and gameplay integration; source validations passed but the full Rust build is not yet verified.
 
-## Current repository state
-The game source and its model bundle have **not been uploaded to this GitHub repository yet**. The verified local development package is RUN CARTER v0.11. The repository is initialized so that a GitHub Actions build can execute once the source is pushed.
+## Start here
 
-## Build
-After uploading the source tree from the v0.11 package, run:
+1. Read **`README_V11_ASSET_IMPORT.md`** for the GLB model import and new AmazonCrime armory.
+2. Read **`ACHIEVEMENTS_AND_EASTER_EGGS.md`** for all achievement IDs, conditions, cheat restrictions, secrets, and testing warnings.
+3. Read **`RELEASE_NOTES_v10.md`** for what changed from v0.9.
+4. Run the asset/source checks and a real Rust test/build on a machine with Rust and raylib native dependencies:
 
 ```bash
+python3 tools/verify_v10.py
+python3 tools/verify_arsenal_assets.py
 cargo test
-cargo build --release
+cargo run --release
 ```
 
-GitHub Actions will build and run tests on each push or pull request when `Cargo.toml` and `src/main.rs` exist.
+Linux build libraries (Debian/Ubuntu): `build-essential cmake clang pkg-config libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev`.
 
-## Assets and licensing
-The local v0.11 package contains 15 unique uploaded 3D assets: 10 fictional armory items, first-person arms, a fan NPC, and three crate variants. Their original files were preserved. Their third-party reuse/redistribution licenses **haven't been verified**. Do not publish those binaries to this public repository or on Steam without checking each license.
+## Controls
 
-The CarterOS visuals and textures were preserved from the original user Figma export.
+- **Office**: WASD movement, mouse look, Shift sprint, E use CarterOS computer, 1–0 equip armory items, left click deploy harmless defensive effect, B toggle 3D weapon preview, Q Raspberry Pi, Z Airhorn, X Confetti Cannon, C Drone, R fictional sugar pickup, F collect AmazonCrime deliveries.
+- **Emergency money**: F6 when cash is below $80. It gives a $400 in-game bailout with $450 debt and forfeits Zero Waste for the current run.
+- **Save/load**: F5 save, F9 load, F10 save-and-quit attempt; unavailable during attacks or active cartoon sugar countdown.
+- **Debug**: F12 or ~ opens a read-only inspector (no shame until cheats are enabled). `help`, `status`, then `debug on` for cheat commands. In CarterOS Settings, hidden **Ctrl+Shift+D** also enables debug features and marks the run cheated.
+- **CarterOS**: Enter unlock, Escape leave, dock shortcuts, window dragging, Cmd-like Ctrl shortcuts as in v0.9. Ctrl+N in CarterMail composes a secret recipient.
+- **Death**: R starts a fresh run and resets run-level cheat restriction without deleting lifetime achievement records.
 
-## Scope
-RUN CARTER v0.11 adds an AmazonCrime armory, charge-limited non-lethal crowd-distraction mechanics, inventory persistence, and source integrity checks. This version is not yet a successfully compiled/tested game.
+## New gameplay summary
 
-## Branch policy
-Develop features in a branch and open a draft PR. Do not merge unverified runtime code.
+- Four tracked defensive gadgets: Raspberry Pi, Airhorn, Confetti Cannon and Decoy Drone.
+- Cartoon mystery sugar: 9% chance to spawn when a wave or shift event occurs, or buy a fictional pack from AmazonCrime for $75. Three pickups activate a 75-second timer, further pickups reset it, and running out triggers a cartoon explosion.
+- Forced attacks after every second completed shift before the day-20 victory milestone.
+- Persistent achievement counters for AI nonsense, repelled kids, and emergency sugar saves.
+- Steamworks achievement API IDs are **not automatically created**. All 19 IDs need to be configured in your actual Steamworks game dashboard before live Steam unlocking can work. The SDK bridge only attempts to submit pending achievements.
+- No public real internet browsing, host filesystem editing, or execution of arbitrary terminal commands is added.
+
+## Important limitations
+
+- The authoring environment has no `cargo`/`rustc`, and no game window/Steam runtime; compilation and playability are **unverified**. Python verification covers files/source contracts only.
+- Eight CarterOS applications still have provisional window interiors because there is no corresponding Figma design. Source Figma images were not changed.
+- The anti-tamper checks are simple heuristics (non-cryptographic checksums, anomalous money changes and extreme clock adjustments). They can be bypassed or misfire, particularly with manual save editing, DST/clock changes, suspend/resume, or bugs. Do not treat them as reliable cheat detection.
+- Very long "le bullshit" streak trophies are vanishingly rare at the intentionally unchanged 17% comedic roll probability. No pity system is implemented.
+- No real drug use or real-world effects are simulated; the white sugar is a fictional cartoon game item.
+- Steamworks requires a real Steam App ID; this source archive includes no such entitlement or verified achievement configuration.
+
+`docs/README_v09_history.md` contains the previous release's longer baseline instructions.
+
+## Audio event layer (v0.13)
+
+`src/audio_events.rs` and `src/main.rs` wire gameplay/UI actions to the bundled licensed Pixabay recordings with event throttling and optional playback. This module has **6 passing GitHub-hosted Rust unit tests**, but the **full game still has not passed a Cargo build**. See `RELEASE_NOTES_V13.md` and `QA_REPORT_V13.md`. The sound inventory still marks 70 cues MISSING, with five source-file candidates needing review.
