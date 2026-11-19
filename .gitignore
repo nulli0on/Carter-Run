@@ -1,0 +1,10 @@
+target/
+.run_carter/
+*.log
+__pycache__/
+*.pyc
+# The original models are third-party uploads. Verify redistribution licenses
+# before pushing these binaries to this public repository.
+/assets/arsenal/*.glb
+# Keep original design source private until publication terms are approved.
+/design_reference/*.fig.zip
