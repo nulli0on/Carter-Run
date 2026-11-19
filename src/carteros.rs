@@ -503,8 +503,6 @@ impl CarterOs {
         if let Some(drag)=self.drag {
             if input.down {
                 if let Some(w)=self.window.as_mut(){
-                    let (width,height)=Self::window_size(w.app);
-                    let _=height;
                     w.x=(drag.x+input.x-drag.mx).clamp(-40,W-200);
                     w.y=(drag.y+input.y-drag.my).clamp(36,H-180);
                 }
