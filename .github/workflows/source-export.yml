@@ -13,9 +13,23 @@ jobs:
         run: |
           set -euo pipefail
           git archive --format=tar.gz --prefix=run-carter/ HEAD > run-carter-v18-source.tar.gz
-          tar -tzf run-carter-v18-source.tar.gz | grep -q 'run-carter/src/main.rs'
-          tar -tzf run-carter-v18-source.tar.gz | grep -q 'run-carter/assets/carteros/desktop_bg.png'
-          ! tar -tzf run-carter-v18-source.tar.gz | grep -Eq 'assets/arsenal/.*\\.glb$|assets/sfx/imported/.*\\.mp3$'
+          # Write the whole archive manifest once: grep -q on a tar pipe
+          # causes SIGPIPE under pipefail and falsely fails successful exports.
+          tar -tzf run-carter-v18-source.tar.gz > source-manifest.txt
+          grep -Fxq 'run-carter/src/main.rs' source-manifest.txt
+          grep -Fxq 'run-carter/assets/carteros/desktop_bg.png' source-manifest.txt
+          if grep -Eq 'assets/arsenal/.*[.]glb$|assets/sfx/imported/.*[.]mp3          sha256sum run-carter-v18-source.tar.gz > source.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: run-carter-v18-exact-source
+          path: |
+            run-carter-v18-source.tar.gz
+            source.sha256
+          if-no-files-found: error
+ source-manifest.txt; then
+            echo 'Raw third-party media leaked into source archive' >&2
+            exit 1
+          fi
           sha256sum run-carter-v18-source.tar.gz > source.sha256
       - uses: actions/upload-artifact@v4
         with:
