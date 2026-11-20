@@ -15,7 +15,7 @@ pub struct Weapon {
 }
 
 pub const CATALOG:[Weapon;COUNT]=[
-    Weapon{name:"Cardboard Blaster",asset:"cardboard_blaster.glb",cost:35,charges:99,range:2.1,cooldown:1.1,burst:1},
+    Weapon{name:"Cardboard Blaster",asset:"cardboard_blaster_rigged.glb",cost:35,charges:99,range:2.1,cooldown:1.1,burst:1},
     Weapon{name:"Foam Knife",asset:"knife.glb",cost:90,charges:99,range:1.2,cooldown:0.65,burst:1},
     Weapon{name:"Mark 23 (prop)",asset:"mark23.glb",cost:180,charges:32,range:6.0,cooldown:0.45,burst:1},
     Weapon{name:"Vector (prop)",asset:"vector.glb",cost:360,charges:48,range:5.0,cooldown:0.23,burst:1},

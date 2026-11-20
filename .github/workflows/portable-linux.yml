@@ -1,0 +1,39 @@
+name: Portable Linux build (glibc 2.39)
+on:
+  push:
+    branches: [feature/v17-animation-compat]
+    paths:
+      - 'src/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/portable-linux.yml'
+  workflow_dispatch:
+jobs:
+  portable-linux:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust / raylib native dependencies
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update
+          apt-get install -y ca-certificates curl git build-essential cmake clang pkg-config libclang-dev libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev xvfb xauth
+          ldd --version | head -1
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Test Rust code
+        run: cargo test
+      - name: Build Linux release for glibc <= 2.39
+        run: cargo build --release
+      - name: Verify window startup
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          ALSOFT_DRIVERS: "null"
+        run: timeout 60s xvfb-run -a -s '-screen 0 1600x1000x24' ./target/release/run-carter --smoke-frames=16
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: run-carter-linux-portable-v17
+          path: target/release/run-carter
+          if-no-files-found: error
