@@ -890,6 +890,18 @@ fn main() {
         std::env::args().filter_map(|a|a.strip_prefix("--qa-weapon-slot=")
             .and_then(|s|s.parse::<usize>().ok())).find(|n|*n<arsenal::COUNT)
     }else{None};
+    // Gameplay is unaffected by these bounded smoke-only calibration parameters.
+    let qa_vm_value=|name:&str,default:f32,low:f32,high:f32|{
+        if smoke_frames.is_none(){return default;}
+        std::env::args().find_map(|arg|arg.strip_prefix(name)
+            .and_then(|s|s.parse::<f32>().ok()))
+            .filter(|n|n.is_finite() && *n>=low && *n<=high)
+            .unwrap_or(default)
+    };
+    let vm_distance=qa_vm_value("--qa-vm-distance=",0.59,0.30,1.50);
+    let vm_right=qa_vm_value("--qa-vm-right=",0.25,-0.60,0.70);
+    let vm_down=qa_vm_value("--qa-vm-down=",-0.29,-0.90,0.30);
+    let vm_scale_multiplier=qa_vm_value("--qa-vm-scale=",1.0,0.1,8.0);
     let mut rendered_frames=0u32;
     let (mut rl, thread)=raylib::init()
         .size(carteros::W,carteros::H)
@@ -936,6 +948,10 @@ fn main() {
     let mut pending_visual_idx:Option<usize>=None;
     let mut ui_target=rl.load_render_texture(&thread,carteros::W as u32,carteros::H as u32)
         .expect("CarterOS 1440x900 framebuffer could not be allocated");
+    // Dedicated RGBA/depth render target for the first-person viewmodel.
+    // World geometry must NEVER depth-occlude the player's equipped item.
+    let mut vm_target=rl.load_render_texture(&thread,carteros::W as u32,carteros::H as u32)
+        .expect("First-person weapon framebuffer could not be allocated");
     let mut os=CarterOs::new();
     let audio=RaylibAudio::init_audio_device().ok();
     let click_sound=audio.as_ref().and_then(|a|a.new_sound("assets/sfx/imported/universfield-computer-mouse-click-352734.mp3")
@@ -1396,26 +1412,6 @@ fn main() {
                     world.draw_cube(Vector3::new(0.10,0.13,-1.65),0.23,0.20,0.23,Color::RAYWHITE);
                     world.draw_cube_wires(Vector3::new(0.10,0.13,-1.65),0.23,0.20,0.23,Color::GOLD);
                 }
-                if show_weapon_preview {
-                    if let Some(ref visual)=selected_visual {
-                        // Preserve source transformations; normalize imported GLB scale
-                        // and compensate for original mesh-space bounding-box center.
-                        let right=Vector3::new(game.yaw.cos(),0.0,-game.yaw.sin());
-                        let forward=Vector3::new(game.yaw.sin(),0.0,game.yaw.cos());
-                        let (lift,recoil,_roll)=visual.view_offsets();
-                        let scale=visual.auto_scale();
-                        let c=visual.center();
-                        let (sin,cos)=(game.yaw.sin(),game.yaw.cos());
-                        let pivot=Vector3::new(c.x*cos+c.z*sin,c.y,-c.x*sin+c.z*cos);
-                        let view_pos=Vector3::new(
-                            pos.x+direction.x*0.76-right.x*0.13-forward.x*recoil-pivot.x*scale,
-                            pos.y+direction.y*0.76-0.32+lift-pivot.y*scale,
-                            pos.z+direction.z*0.76-right.z*0.13-forward.z*recoil-pivot.z*scale);
-                        world.draw_model_ex(&visual.model,view_pos,
-                            Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
-                            Vector3::new(scale,scale,scale),Color::WHITE);
-                    }
-                }
                 for kid in &game.kids{
                     if let Some(ref fan)=fan_model {
                         world.draw_model(fan,Vector3::new(kid.x,0.0,kid.z),0.83,Color::WHITE);
@@ -1426,6 +1422,38 @@ fn main() {
                     world.draw_cube(Vector3::new(kid.x,1.19,kid.z),0.27,0.27,0.26,Color::BEIGE);
                     world.draw_cube(Vector3::new(kid.x-0.10,0.19,kid.z),0.11,0.37,0.18,Color::DARKBLUE);
                     world.draw_cube(Vector3::new(kid.x+0.10,0.19,kid.z),0.11,0.37,0.18,Color::DARKBLUE);
+                }
+            }
+            // A separate pass gives the first-person weapon its own depth
+            // buffer. It remains in front of the monitor/desk and is not
+            // obscured by world geometry. No GLB geometry is modified.
+            if show_weapon_preview {
+                if let Some(ref visual)=selected_visual {
+                    {
+                        let mut layer=d.begin_texture_mode(&thread,&mut vm_target);
+                        layer.clear_background(Color::BLANK);
+                        {
+                            let mut view=layer.begin_mode3D(camera);
+                            let right=Vector3::new(game.yaw.cos(),0.0,-game.yaw.sin());
+                            let forward=Vector3::new(game.yaw.sin(),0.0,game.yaw.cos());
+                            let (lift,recoil,_roll)=visual.view_offsets();
+                            let scale=visual.auto_scale()*vm_scale_multiplier;
+                            let c=visual.center();
+                            let (sin,cos)=(game.yaw.sin(),game.yaw.cos());
+                            let pivot=Vector3::new(c.x*cos+c.z*sin,c.y,-c.x*sin+c.z*cos);
+                            let view_pos=Vector3::new(
+                                pos.x+direction.x*vm_distance+right.x*vm_right-forward.x*recoil-pivot.x*scale,
+                                pos.y+direction.y*vm_distance+vm_down+lift-pivot.y*scale,
+                                pos.z+direction.z*vm_distance+right.z*vm_right-forward.z*recoil-pivot.z*scale);
+                            view.draw_model_ex(&visual.model,view_pos,
+                                Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
+                                Vector3::new(scale,scale,scale),Color::WHITE);
+                        }
+                    }
+                    d.draw_texture_pro(vm_target.texture(),
+                        Rectangle::new(0.0,0.0,carteros::W as f32,-(carteros::H as f32)),
+                        Rectangle::new(0.0,0.0,display_w,display_h),
+                        Vector2::zero(),0.0,Color::WHITE);
                 }
             }
             draw_overlay(&mut d,&game);
