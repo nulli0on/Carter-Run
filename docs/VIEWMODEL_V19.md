@@ -20,3 +20,29 @@ The v0.18 compiled game was launched under Linux Xvfb/Mesa with all 16 supplied 
 
 ## Still open
 Several original GLBs use long unlabelled `allanims` tracks, so specific action segments remain artist review work. The cardboard gun's mesh has visible white-source fragments. Third-party GLB licenses, Steam integration, the full 20-day campaign and real desktop gameplay testing are separate release blockers. This v0.19 feature is a technical and presentation iteration, not a finished product.
+
+## 16-slot first-person screenshot audit (20 Nov 2026)
+The complete original asset bundle was used with the portable v0.19 Linux build under Xvfb/Mesa. Screenshot A was recorded with the current weapon visible, screenshot B after pressing B to hide the weapon. Within the 1440×900 cropped viewport the high-contrast changed-pixel totals were:
+
+| Index | Weapon | v0.18 | v0.19 initial |
+|---:|---|---:|---:|
+| 0 | Cardboard | 45,058 | 54,794 |
+| 1 | Knife | 20,380 | 17,792 |
+| 2 | Mark23 | 4,467 | 11,863 |
+| 3 | Vector | 5,975 | 16,106 |
+| 4 | M4 | 1,298 | 30,679 |
+| 5 | Minigun | 10,169 | 47,660 |
+| 6 | Flamethrower | 9,859 | 26,284 |
+| 7 | RPG7 | 4,885 | 14,493 |
+| 8 | Grenade | 45,459 | 47,894 |
+| 9 | Dynamite | 6,787 | 18,430 |
+| 10 | Shotgun | 8,464 | 46,986 |
+| 11 | Sniper | 4,101 | 30,532 |
+| 12 | Persuader | 14,451 | 28,451 |
+| 13 | LMG | 5,066 | 28,987 |
+| 14 | Grenade launcher | 19,273 | 96,628 (clipped) |
+| 15 | Pistol | 25,762 | 27,521 |
+
+**Correction after visual audit:** The grenade launcher profile is reduced from 1.65× to 1.12× because the right sleeve clipped past the viewport. This latest correction requires a fresh screenshot and final CI check.
+
+The before/after pixel counts are *visibility indicators*, not animation-quality scores. The Mark23 and M4 still show disconnected moving pieces in some poses and require further rig/animation interpretation. All original files remain untouched.

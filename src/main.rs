@@ -882,7 +882,7 @@ fn handle_os_action(a:OsAction,g:&mut Game,os:&CarterOs){
 // original weapons. Values affect only rendering, never gameplay or GLB data.
 const VM_PROFILE_MULTIPLIERS:[f32;arsenal::COUNT]=[
     1.00,1.00,1.65,1.60,2.20,1.35,1.30,1.60,
-    0.85,1.35,1.35,1.75,1.10,1.60,1.65,1.00,
+    0.85,1.35,1.35,1.75,1.10,1.60,1.12,1.00,
 ];
 fn main() {
     // CI-only bounded visual startup check: actual raylib window, no fake render path.
@@ -1497,6 +1497,11 @@ fn main() {
 #[cfg(test)]
 mod game_tests {
     use super::*;
+    #[test]
+    fn grenade_launcher_profile_is_not_oversized(){
+        // The original 1.65 factor clipped the entire right sleeve.
+        assert!(VM_PROFILE_MULTIPLIERS[14]>=0.75 && VM_PROFILE_MULTIPLIERS[14]<=1.20);
+    }
     #[test]
     fn every_weapon_has_finite_positive_viewmodel_scale(){
         assert_eq!(VM_PROFILE_MULTIPLIERS.len(),arsenal::COUNT);
