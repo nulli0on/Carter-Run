@@ -878,6 +878,12 @@ fn handle_os_action(a:OsAction,g:&mut Game,os:&CarterOs){
     let _=g.save_campaign();
 }
 
+// First-person size correction derived from real Xvfb captures of the 16
+// original weapons. Values affect only rendering, never gameplay or GLB data.
+const VM_PROFILE_MULTIPLIERS:[f32;arsenal::COUNT]=[
+    1.00,1.00,1.65,1.60,2.20,1.35,1.30,1.60,
+    0.85,1.35,1.35,1.75,1.10,1.60,1.65,1.00,
+];
 fn main() {
     // CI-only bounded visual startup check: actual raylib window, no fake render path.
     // Normal gameplay stays unchanged unless this explicit argument is supplied.
@@ -900,8 +906,9 @@ fn main() {
     };
     let vm_distance=qa_vm_value("--qa-vm-distance=",0.59,0.30,1.50);
     let vm_right=qa_vm_value("--qa-vm-right=",0.25,-0.60,0.70);
-    let vm_down=qa_vm_value("--qa-vm-down=",-0.29,-0.90,0.30);
+    let vm_down=qa_vm_value("--qa-vm-down=",-0.16,-0.90,0.30);
     let vm_scale_multiplier=qa_vm_value("--qa-vm-scale=",1.0,0.1,8.0);
+    let vm_yaw_offset=qa_vm_value("--qa-vm-yaw=",0.0,-180.0,180.0);
     let mut rendered_frames=0u32;
     let (mut rl, thread)=raylib::init()
         .size(carteros::W,carteros::H)
@@ -1432,10 +1439,11 @@ fn main() {
                             raylib::ffi::rlDrawRenderBatchActive();
                             raylib::ffi::rlDisableDepthTest();
                         }
-                            let right=Vector3::new(game.yaw.cos(),0.0,-game.yaw.sin());
+                            // Camera forward is +Z at yaw=0; screen-right is -X.
+                        let right=Vector3::new(-game.yaw.cos(),0.0,game.yaw.sin());
                             let forward=Vector3::new(game.yaw.sin(),0.0,game.yaw.cos());
                             let (lift,recoil,_roll)=visual.view_offsets();
-                            let scale=visual.auto_scale()*vm_scale_multiplier;
+                            let scale=visual.auto_scale()*VM_PROFILE_MULTIPLIERS[game.arsenal.selected]*vm_scale_multiplier;
                             let c=visual.center();
                             let (sin,cos)=(game.yaw.sin(),game.yaw.cos());
                             let pivot=Vector3::new(c.x*cos+c.z*sin,c.y,-c.x*sin+c.z*cos);
@@ -1444,7 +1452,7 @@ fn main() {
                                 pos.y+direction.y*vm_distance+vm_down+lift-pivot.y*scale,
                                 pos.z+direction.z*vm_distance+right.z*vm_right-forward.z*recoil-pivot.z*scale);
                         view.draw_model_ex(&visual.model,view_pos,
-                            Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
+                            Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees()+vm_yaw_offset,
                             Vector3::new(scale,scale,scale),Color::WHITE);
                         unsafe {
                             raylib::ffi::rlDrawRenderBatchActive();
@@ -1459,7 +1467,7 @@ fn main() {
                     let (state,count)=visual.status();
                     format!("ANIMATION INSPECTOR [F9] | slot {} | {} | {} clip(s) | scale {:.5} | {}",
                         game.arsenal.selected+1,arsenal::CATALOG[game.arsenal.selected].asset,
-                        count,visual.auto_scale(),state)
+                        count,visual.auto_scale()*VM_PROFILE_MULTIPLIERS[game.arsenal.selected]*vm_scale_multiplier,state)
                 }else{format!("ANIMATION INSPECTOR [F9] | slot {} | MODEL NOT LOADED",game.arsenal.selected+1)};
                 d.draw_rectangle(10,72,1120,36,Color::new(12,18,26,238));
                 d.draw_text(&text,20,80,17,Color::YELLOW);
@@ -1489,6 +1497,11 @@ fn main() {
 #[cfg(test)]
 mod game_tests {
     use super::*;
+    #[test]
+    fn every_weapon_has_finite_positive_viewmodel_scale(){
+        assert_eq!(VM_PROFILE_MULTIPLIERS.len(),arsenal::COUNT);
+        assert!(VM_PROFILE_MULTIPLIERS.iter().all(|v|v.is_finite()&&*v>0.1&&*v<5.0));
+    }
     #[test]
     fn sponsorship_adds_money() {
         let mut g=Game::new();g.inbox_index=1;
