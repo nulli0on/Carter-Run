@@ -1,3 +1,7 @@
+# RUN CARTER v0.16 — Embedded Weapon Animations
+
+**Verified in GitHub CI:** `cargo test` (85 PASS / 0 FAIL), Linux release build, CarterOS art hashes, and office/CarterOS 16-frame virtual-window start. The GLBs remain local, so real animation visual playback is not verified by CI. See [animation audit](docs/WEAPON_ANIMATIONS_V16.md).
+
 # RUN CARTER v0.15 — Updated Weapon Arsenal
 
 **Verified CI:** `cargo test` **78 passed / 0 failed**; `cargo build --release` **PASS**; both office and CarterOS **16-frame Xvfb startup tests PASS**. [Successful workflow](https://github.com/nulli0on/Carter-Run/actions/runs/44740815713).
