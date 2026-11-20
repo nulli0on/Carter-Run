@@ -1,0 +1,31 @@
+name: Export exact committed RUN CARTER source
+on:
+  push:
+    branches: [feature/v18-viewmodel-qa]
+  workflow_dispatch:
+jobs:
+  source-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Archive Git-tracked source and approved artwork only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive --format=tar.gz --prefix=run-carter/ HEAD > run-carter-v18-source.tar.gz
+          tar -tzf run-carter-v18-source.tar.gz > source-manifest.txt
+          grep -Fxq "run-carter/src/main.rs" source-manifest.txt
+          grep -Fxq "run-carter/assets/carteros/desktop_bg.png" source-manifest.txt
+          if grep -E 'assets/arsenal/.*[.]glb|assets/sfx/imported/.*[.]mp3' source-manifest.txt; then
+            echo "Unapproved raw media in source archive" >&2
+            exit 1
+          fi
+          sha256sum run-carter-v18-source.tar.gz > source.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: run-carter-v18-exact-source
+          path: |
+            run-carter-v18-source.tar.gz
+            source.sha256
+            source-manifest.txt
+          if-no-files-found: error

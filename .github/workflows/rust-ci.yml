@@ -47,6 +47,8 @@ jobs:
           fi
       - name: Exact Figma PNG hash verification
         run: python3 tools/verify_carteros_artwork.py
+      - name: Test model material converter (no third-party GLB required)
+        run: python3 tools/convert_specgloss_materials.py --self-test
       - name: Test Rust code
         run: cargo test
       - name: Compile release binary
