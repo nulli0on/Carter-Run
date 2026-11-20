@@ -1,3 +1,7 @@
+## v0.19 first-person weapon visibility
+
+16 model-size profiles, corrected view-right orientation, raised viewmodel position, and actual-asset screenshot comparisons. See [v0.19 verification notes](docs/VIEWMODEL_V19.md). Full Rust CI and portable/Windows builds run on `feature/v19-viewmodel-calibration`. The original CarterOS PNGs are preserved; the asset pack remains local.
+
 # RUN CARTER v0.16 — Embedded Weapon Animations
 
 **Verified in GitHub CI:** `cargo test` (85 PASS / 0 FAIL), Linux release build, CarterOS art hashes, and office/CarterOS 16-frame virtual-window start. The GLBs remain local, so real animation visual playback is not verified by CI. See [animation audit](docs/WEAPON_ANIMATIONS_V16.md).
