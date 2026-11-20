@@ -1,3 +1,17 @@
+# RUN CARTER v0.15 — Updated Weapon Arsenal
+
+**Verified CI:** `cargo test` **78 passed / 0 failed**; `cargo build --release` **PASS**; both office and CarterOS **16-frame Xvfb startup tests PASS**. [Successful workflow](https://github.com/nulli0on/Carter-Run/actions/runs/44740815713).
+
+The owner supplied `Archiv(10).zip` with 18 GLBs, including six additional gun types and new grenade/dynamite models. The **full local package** now has 21 validated GLBs: 16 weapon models and five supporting assets. All previous ten weapon inventory IDs are preserved. CarterOS's 36 original Figma PNGs remain untouched, and the game loads legacy v0.14 save files containing ten weapon charge slots.
+
+**Controls:** `1`–`0` select original ten weapons. Mouse wheel, PageUp or PageDown cycle all 16. AmazonCrime's Armory 1 and Armory 2 pages each show eight items.
+
+**Scope limitation:** Original 3D model binaries and raw Pixabay MP3s are intentionally not included in this public code repository. The full-asset version needs actual model scale/rotation and animation QA; the CI startup uses fallback assets. Third-party 3D model licensing must be verified separately. No Steam gameplay/unlock test has been performed.
+
+[Updated weapon details](docs/V15_UPDATED_WEAPONS.md) · [Draft PR #5](https://github.com/nulli0on/Carter-Run/pull/5)
+
+---
+
 # RUN CARTER v0.13 — AmazonCrime Arsenal & Imported 3D Models
 
 **Rust + raylib source prototype. Not a verified runnable release.** v0.11 builds on v0.10. The original CarterOS Figma artwork is unchanged. See `README_V11_ASSET_IMPORT.md` for 15 unique 3D models, model provenance, and gameplay integration; source validations passed but the full Rust build is not yet verified.

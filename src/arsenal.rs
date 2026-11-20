@@ -1,7 +1,7 @@
 //! Inventory & asset manifest for non-lethal comedy-game defense items.
 //! Meshes are kept unchanged; rig/animation compatibility requires a running raylib test.
 
-pub const COUNT:usize=10;
+pub const COUNT:usize=16;
 pub const FIRST_SHOP_ID:i32=9;
 #[derive(Debug,Clone,Copy,PartialEq)]
 pub struct Weapon {
@@ -25,6 +25,12 @@ pub const CATALOG:[Weapon;COUNT]=[
     Weapon{name:"T-Shirt RPG (prop)",asset:"rpg7.glb",cost:1100,charges:8,range:9.0,cooldown:2.3,burst:6},
     Weapon{name:"Party Grenade (prop)",asset:"grenade.glb",cost:170,charges:6,range:4.0,cooldown:1.6,burst:4},
     Weapon{name:"Dynamite Pinata (prop)",asset:"dynamite.glb",cost:220,charges:4,range:3.6,cooldown:2.6,burst:5},
+    Weapon{name:"Foam Shotgun",asset:"shotgun.glb",cost:520,charges:28,range:5.5,cooldown:0.95,burst:4},
+    Weapon{name:"T-Shirt Sniper",asset:"sniper.glb",cost:840,charges:15,range:12.0,cooldown:1.6,burst:1},
+    Weapon{name:"Persuader Megaphone",asset:"persuader.glb",cost:650,charges:32,range:5.5,cooldown:0.60,burst:3},
+    Weapon{name:"Sticker LMG",asset:"lmg.glb",cost:1180,charges:140,range:7.5,cooldown:0.12,burst:2},
+    Weapon{name:"Confetti Launcher",asset:"grenadelauncher.glb",cost:750,charges:18,range:8.0,cooldown:1.80,burst:5},
+    Weapon{name:"Pistol (prop)",asset:"pistol.glb",cost:250,charges:36,range:6.0,cooldown:0.40,burst:1},
 ];
 
 #[derive(Debug,Clone,PartialEq)]
@@ -57,6 +63,16 @@ impl Arsenal {
         if index>=COUNT || !self.owned[index]{return false;}
         self.selected=index;true
     }
+    /// Cycle through owned items, including slots 11–16 unavailable on the number keys.
+    /// Returns false without changing selection when the starter is the only owned item.
+    pub fn cycle(&mut self,forward:bool)->bool{
+        let start=self.selected;
+        for step in 1..COUNT {
+            let index=if forward{(start+step)%COUNT}else{(start+COUNT-step)%COUNT};
+            if self.owned[index]{self.selected=index;return true;}
+        }
+        false
+    }
     pub fn tick(&mut self,dt:f32){self.cooldown=(self.cooldown-dt.max(0.0)).max(0.0);}
     pub fn fire(&mut self)->Option<Weapon>{
         let idx=self.selected;
@@ -69,7 +85,7 @@ impl Arsenal {
         self.owned.iter().enumerate().fold(0u16,|bits,(i,have)|if *have{bits | 1u16<<i}else{bits})
     }
     pub fn restore(mask:u16,ammo:[u16;COUNT],selected:usize)->Option<Self>{
-        if mask & !((1u16<<COUNT)-1)!=0 || mask&1==0 || selected>=COUNT || mask&(1<<selected)==0{return None}
+        if mask & !(((1u32<<COUNT)-1) as u16)!=0 || mask&1==0 || selected>=COUNT || mask&(1<<selected)==0{return None}
         let owned=std::array::from_fn(|i|mask&(1u16<<i)!=0);
         if ammo.iter().enumerate().any(|(i,c)|(*c>CATALOG[i].charges.saturating_mul(3))||(!owned[i]&&*c!=0)){return None}
         Some(Self{owned,charges:ammo,selected,cooldown:0.0})
@@ -85,6 +101,29 @@ impl Arsenal {
         a.buy(2,&mut money).unwrap();let b=Arsenal::restore(a.ownership_mask(),a.charges,a.selected).unwrap();assert_eq!(a,b);}
     #[test]fn no_cheat_from_corrupted_save(){assert!(Arsenal::restore(0,[0;COUNT],0).is_none());
         assert!(Arsenal::restore(1,[65535;COUNT],0).is_none());}
+    #[test]fn six_new_models_have_stable_unique_ids(){
+        assert_eq!(COUNT,16);
+        for w in CATALOG.iter(){assert!(w.cost>=0);assert!(!w.asset.is_empty());}
+        let unique=CATALOG.iter().map(|w|w.asset).collect::<std::collections::HashSet<_>>();
+        assert_eq!(unique.len(),COUNT);
+        assert_eq!(CATALOG[8].asset,"grenade.glb");
+        assert_eq!(CATALOG[9].asset,"dynamite.glb");
+        assert_eq!(CATALOG[15].asset,"pistol.glb");
+    }
+    #[test]fn cycling_skips_unowned_and_wraps(){
+        let mut a=Arsenal::new();assert!(!a.cycle(true));
+        let mut cash=4000;a.buy(15,&mut cash).unwrap();
+        assert_eq!(a.selected,15);
+        assert!(a.cycle(true));assert_eq!(a.selected,0);
+        assert!(a.cycle(false));assert_eq!(a.selected,15);
+    }
+    #[test]fn high_weapon_bit_roundtrips(){
+        let mut a=Arsenal::new();let mut cash=1000;
+        a.buy(15,&mut cash).unwrap();
+        assert_eq!(a.ownership_mask(),(1<<15)|1);
+        let b=Arsenal::restore(a.ownership_mask(),a.charges,a.selected).unwrap();
+        assert_eq!(a,b);
+    }
     #[test]fn purchase_requires_budget(){let mut a=Arsenal::new();let mut cash=0;
         assert!(a.buy(9,&mut cash).is_err());assert_eq!(cash,0);}
 }

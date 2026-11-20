@@ -86,7 +86,7 @@ impl Tracker {
             }
         }
         v.run.bullshit_streak=v.run.bullshit_streak.min(1_000_000);
-        v.run.arsenal_mask &= (1u16<<crate::arsenal::COUNT)-1;
+        v.run.arsenal_mask &= ((1u32<<crate::arsenal::COUNT)-1) as u16;
         v
     }
     pub fn save(&self)->std::io::Result<()> {
@@ -153,7 +153,7 @@ impl Tracker {
         self.run.arsenal_mask|=bit;
         // Starter cardboard blaster is owned even before the first purchase.
         self.run.arsenal_mask|=1;
-        if self.run.arsenal_mask==(1u16<<crate::arsenal::COUNT)-1 && remaining_cash>0 && !self.run.bailed_out {
+        if self.run.arsenal_mask==((1u32<<crate::arsenal::COUNT)-1) as u16 && remaining_cash>0 && !self.run.bailed_out {
             self.grant_clean("FULL_ARSENAL_ZERO_WASTE");
         }
         self.persist();
@@ -209,9 +209,9 @@ impl Tracker {
         t.restart_clean_run();for _ in 0..18{t.bullshit();}t.dead_air();assert_eq!(t.run.bullshit_streak,0);
     }
     #[test]fn arsenal_and_sugar_window(){
-        let mut t=Tracker::default();for id in 10..=18{t.purchase(id,50);}assert!(t.has("FULL_ARSENAL_ZERO_WASTE"));
+        let mut t=Tracker::default();for id in 10..(crate::arsenal::FIRST_SHOP_ID+crate::arsenal::COUNT as i32){t.purchase(id,50);}assert!(t.has("FULL_ARSENAL_ZERO_WASTE"));
         for _ in 0..3{t.sugar();}t.emergency_save(2.5);assert!(t.has("EDGE_OF_DETONATION"));
-        t.restart_clean_run();for id in 10..=18{t.purchase(id,50);}t.bailout();assert_eq!(t.run.bailed_out,true);
+        t.restart_clean_run();for id in 10..(crate::arsenal::FIRST_SHOP_ID+crate::arsenal::COUNT as i32){t.purchase(id,50);}t.bailout();assert_eq!(t.run.bailed_out,true);
     }
     #[test]fn victory_requires_real_clean_run(){let mut t=Tracker::default();t.victory();assert!(!t.has("PURIST_MASTER"));
         for _ in 0..8{t.wave_survived(4);}t.victory();assert!(t.has("PURIST_MASTER"));assert!(t.has("UNTOUCHABLE_LEGEND"));}
