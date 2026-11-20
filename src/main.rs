@@ -894,6 +894,31 @@ fn main() {
     // Esc closes the in-game desktop instead of terminating the program.
     rl.set_exit_key(None);
     rl.disable_cursor();
+    // Full-asset diagnostic; loads real meshes and samples every weapon action.
+    // Exit code 2 indicates missing meshes or incompatible skeletal animations.
+    if std::env::args().any(|a|a=="--audit-weapon-animations"){
+        let mut failures=0usize;
+        for slot in 0..arsenal::COUNT{
+            let asset=arsenal::CATALOG[slot].asset;
+            match WeaponVisual::load(&mut rl,&thread,slot){
+                None=>{println!("ANIM_AUDIT slot={slot} file={asset} MISSING_MODEL");failures+=1;},
+                Some(mut v)=>{
+                    let expected=weapon_animation::profile(slot).fire.is_some();
+                    let loaded=v.animation_count();
+                    for action in [WeaponMotion::Draw,WeaponMotion::Fire,WeaponMotion::Reload,WeaponMotion::Holster]{
+                        v.trigger(action);
+                        for _ in 0..4{v.update(&mut rl,&thread,1.0/60.0);}
+                    }
+                    let status=if expected && loaded==0{failures+=1;"MISSING_ANIMATION"}
+                        else if loaded>0{"SKELETAL_OK"}else{"STATIC_PROCEDURAL_OK"};
+                    println!("ANIM_AUDIT slot={slot} file={asset} clips={loaded} status={status} scale={:.6}",v.auto_scale());
+                }
+            }
+        }
+        println!("ANIM_AUDIT_RESULT failures={failures} models={}",arsenal::COUNT);
+        if failures>0{std::process::exit(2);}
+        return;
+    }
     let office=match rl.load_model(&thread,"assets/office_original_textures_complete.glb"){
         Ok(model)=>Some(model),
         Err(err)=>{eprintln!("Office asset unavailable: {err:?}");None}
@@ -937,6 +962,7 @@ fn main() {
     let mut console=DebugConsole::default();
     let mut debug_enabled=false;
     let mut show_weapon_preview=true; // Animated first-person weapon model (B toggles).
+    let mut animation_inspector=false; // F9: pose/clip diagnostics.
     let mut last_money=game.money;
     let mut last_wall=SystemTime::now();
     let mut last_mono=Instant::now();
@@ -1056,6 +1082,7 @@ fn main() {
                     }
                     if rl.is_mouse_button_pressed(MouseButton::MOUSE_BUTTON_LEFT){game.fire_equipped();}
                     if rl.is_key_pressed(KeyboardKey::KEY_B){show_weapon_preview=!show_weapon_preview;}
+                    if rl.is_key_pressed(KeyboardKey::KEY_F9){animation_inspector=!animation_inspector;}
                     if rl.is_key_pressed(KeyboardKey::KEY_Q){game.drop_decoy();}
                     if rl.is_key_pressed(KeyboardKey::KEY_Z){game.use_airhorn();}
                     if rl.is_key_pressed(KeyboardKey::KEY_X){game.use_confetti();}
@@ -1358,18 +1385,19 @@ fn main() {
                 }
                 if show_weapon_preview {
                     if let Some(ref visual)=selected_visual {
-                        // User GLBs vary widely in native scale; these remain provisional
-                        // until the fully asset-loaded visual QA captures each weapon.
-                        const SCALES:[f32;arsenal::COUNT]=[0.006,0.008,0.003,0.003,0.003,0.005,0.006,0.006,0.008,0.6,
-                            0.005,0.005,0.005,0.005,0.005,0.005];
-                        // Camera-relative position and yaw: no longer a fixed weapon left on
-                        // the desk. The original authored animation transforms remain intact.
+                        // Preserve source transformations; normalize imported GLB scale
+                        // and compensate for original mesh-space bounding-box center.
                         let right=Vector3::new(game.yaw.cos(),0.0,-game.yaw.sin());
+                        let forward=Vector3::new(game.yaw.sin(),0.0,game.yaw.cos());
+                        let (lift,recoil,_roll)=visual.view_offsets();
+                        let scale=visual.auto_scale();
+                        let c=visual.center();
+                        let (sin,cos)=(game.yaw.sin(),game.yaw.cos());
+                        let pivot=Vector3::new(c.x*cos+c.z*sin,c.y,-c.x*sin+c.z*cos);
                         let view_pos=Vector3::new(
-                            pos.x+direction.x*0.68+right.x*0.18,
-                            pos.y+direction.y*0.68-0.26,
-                            pos.z+direction.z*0.68+right.z*0.18);
-                        let scale=SCALES[game.arsenal.selected];
+                            pos.x+direction.x*0.68+right.x*0.18-forward.x*recoil-pivot.x*scale,
+                            pos.y+direction.y*0.68-0.26+lift-pivot.y*scale,
+                            pos.z+direction.z*0.68+right.z*0.18-forward.z*recoil-pivot.z*scale);
                         world.draw_model_ex(&visual.model,view_pos,
                             Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
                             Vector3::new(scale,scale,scale),Color::WHITE);
@@ -1388,6 +1416,16 @@ fn main() {
                 }
             }
             draw_overlay(&mut d,&game);
+            if animation_inspector {
+                let text=if let Some(ref visual)=selected_visual {
+                    let (state,count)=visual.status();
+                    format!("ANIMATION INSPECTOR [F9] | slot {} | {} | {} clip(s) | scale {:.5} | {}",
+                        game.arsenal.selected+1,arsenal::CATALOG[game.arsenal.selected].asset,
+                        count,visual.auto_scale(),state)
+                }else{format!("ANIMATION INSPECTOR [F9] | slot {} | MODEL NOT LOADED",game.arsenal.selected+1)};
+                d.draw_rectangle(10,72,1120,36,Color::new(12,18,26,238));
+                d.draw_text(&text,20,80,17,Color::YELLOW);
+            }
         }
         if console.open {
             let dw=d.get_screen_width();let dh=d.get_screen_height();
