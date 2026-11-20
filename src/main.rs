@@ -948,10 +948,6 @@ fn main() {
     let mut pending_visual_idx:Option<usize>=None;
     let mut ui_target=rl.load_render_texture(&thread,carteros::W as u32,carteros::H as u32)
         .expect("CarterOS 1440x900 framebuffer could not be allocated");
-    // Dedicated RGBA/depth render target for the first-person viewmodel.
-    // World geometry must NEVER depth-occlude the player's equipped item.
-    let mut vm_target=rl.load_render_texture(&thread,carteros::W as u32,carteros::H as u32)
-        .expect("First-person weapon framebuffer could not be allocated");
     let mut os=CarterOs::new();
     let audio=RaylibAudio::init_audio_device().ok();
     let click_sound=audio.as_ref().and_then(|a|a.new_sound("assets/sfx/imported/universfield-computer-mouse-click-352734.mp3")
@@ -1424,16 +1420,18 @@ fn main() {
                     world.draw_cube(Vector3::new(kid.x+0.10,0.19,kid.z),0.11,0.37,0.18,Color::DARKBLUE);
                 }
             }
-            // A separate pass gives the first-person weapon its own depth
-            // buffer. It remains in front of the monitor/desk and is not
-            // obscured by world geometry. No GLB geometry is modified.
+            // Foreground weapon: draw after world using a temporary depth
+            // override. Do not cover the screen with an RGBA texture.
             if show_weapon_preview {
                 if let Some(ref visual)=selected_visual {
                     {
-                        let mut layer=d.begin_texture_mode(&thread,&mut vm_target);
-                        layer.clear_background(Color::BLANK);
-                        {
-                            let mut view=layer.begin_mode3D(camera);
+                        let mut view=d.begin_mode3D(camera);
+                        // World pixels are retained; only its depth buffer is
+                        // ignored while the foreground model is drawn.
+                        unsafe {
+                            raylib::ffi::rlDrawRenderBatchActive();
+                            raylib::ffi::rlDisableDepthTest();
+                        }
                             let right=Vector3::new(game.yaw.cos(),0.0,-game.yaw.sin());
                             let forward=Vector3::new(game.yaw.sin(),0.0,game.yaw.cos());
                             let (lift,recoil,_roll)=visual.view_offsets();
@@ -1445,15 +1443,14 @@ fn main() {
                                 pos.x+direction.x*vm_distance+right.x*vm_right-forward.x*recoil-pivot.x*scale,
                                 pos.y+direction.y*vm_distance+vm_down+lift-pivot.y*scale,
                                 pos.z+direction.z*vm_distance+right.z*vm_right-forward.z*recoil-pivot.z*scale);
-                            view.draw_model_ex(&visual.model,view_pos,
-                                Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
-                                Vector3::new(scale,scale,scale),Color::WHITE);
+                        view.draw_model_ex(&visual.model,view_pos,
+                            Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
+                            Vector3::new(scale,scale,scale),Color::WHITE);
+                        unsafe {
+                            raylib::ffi::rlDrawRenderBatchActive();
+                            raylib::ffi::rlEnableDepthTest();
                         }
                     }
-                    d.draw_texture_pro(vm_target.texture(),
-                        Rectangle::new(0.0,0.0,carteros::W as f32,-(carteros::H as f32)),
-                        Rectangle::new(0.0,0.0,display_w,display_h),
-                        Vector2::zero(),0.0,Color::WHITE);
                 }
             }
             draw_overlay(&mut d,&game);
