@@ -1,0 +1,17 @@
+slot,weapon,v18_visible_pixels,v19_initial_visible_pixels,visual_status
+0,Cardboard,45058,54794,visible
+1,Knife,20380,17792,visible
+2,Mark23,4467,11863,detached_parts_observed
+3,Vector,5975,16106,visible
+4,M4,1298,30679,detached_parts_observed
+5,Minigun,10169,47660,visible
+6,Flamethrower,9859,26284,visible
+7,RPG7,4885,14493,visible_static
+8,Grenade,45459,47894,visible_static
+9,Dynamite,6787,18430,visible_static
+10,Shotgun,8464,46986,visible
+11,Sniper,4101,30532,visible
+12,Persuader,14451,28451,visible
+13,LMG,5066,28987,visible
+14,GrenadeLauncher,19273,96628,clipped_corrected_pending_visual_qa
+15,Pistol,25762,27521,visible
