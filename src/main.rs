@@ -885,6 +885,11 @@ fn main() {
         a.strip_prefix("--smoke-frames=").and_then(|s|s.parse::<u32>().ok())
     }).find(|n|(1..=1200).contains(n));
     let smoke_desktop=smoke_frames.is_some() && std::env::args().any(|a|a=="--smoke-desktop");
+    // QA-only in-memory equip override; not accessible during ordinary gameplay.
+    let qa_weapon_slot=if smoke_frames.is_some(){
+        std::env::args().filter_map(|a|a.strip_prefix("--qa-weapon-slot=")
+            .and_then(|s|s.parse::<usize>().ok())).find(|n|*n<arsenal::COUNT)
+    }else{None};
     let mut rendered_frames=0u32;
     let (mut rl, thread)=raylib::init()
         .size(carteros::W,carteros::H)
@@ -956,6 +961,11 @@ fn main() {
     let mut last_preset=2u8;
     let mut game=Game::from_save();
     if smoke_desktop{ game.screen=Screen::Computer; }
+    if let Some(slot)=qa_weapon_slot{
+        game.arsenal.owned[slot]=true;
+        game.arsenal.charges[slot]=99;
+        game.arsenal.selected=slot;
+    }
     let steam=steam_bridge::Bridge::new();
     let mut steam_retry=5.0f32;
     let mut cursor_on=false;
@@ -1021,7 +1031,8 @@ fn main() {
         if rl.is_key_pressed(KeyboardKey::KEY_F5) {
             match game.save_campaign(){Ok(())=>game.inform("Campaign saved."),Err(e)=>game.inform(&e)}
         }
-        if rl.is_key_pressed(KeyboardKey::KEY_F9) {
+        if rl.is_key_pressed(KeyboardKey::KEY_F9) &&
+            (rl.is_key_down(KeyboardKey::KEY_LEFT_CONTROL)||rl.is_key_down(KeyboardKey::KEY_RIGHT_CONTROL)) {
             if game.alarm>=0.0||game.active_wave>=0.0||game.sugar_timer>0.0 {
                 game.inform("Cannot load during an attack or cartoon sugar countdown.");
             }else if Snapshot::load(&Snapshot::path()).is_some(){
@@ -1082,7 +1093,9 @@ fn main() {
                     }
                     if rl.is_mouse_button_pressed(MouseButton::MOUSE_BUTTON_LEFT){game.fire_equipped();}
                     if rl.is_key_pressed(KeyboardKey::KEY_B){show_weapon_preview=!show_weapon_preview;}
-                    if rl.is_key_pressed(KeyboardKey::KEY_F9){animation_inspector=!animation_inspector;}
+                    if rl.is_key_pressed(KeyboardKey::KEY_F9)
+                        && !rl.is_key_down(KeyboardKey::KEY_LEFT_CONTROL)
+                        && !rl.is_key_down(KeyboardKey::KEY_RIGHT_CONTROL){animation_inspector=!animation_inspector;}
                     if rl.is_key_pressed(KeyboardKey::KEY_Q){game.drop_decoy();}
                     if rl.is_key_pressed(KeyboardKey::KEY_Z){game.use_airhorn();}
                     if rl.is_key_pressed(KeyboardKey::KEY_X){game.use_confetti();}
