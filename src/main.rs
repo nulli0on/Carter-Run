@@ -1395,9 +1395,9 @@ fn main() {
                         let (sin,cos)=(game.yaw.sin(),game.yaw.cos());
                         let pivot=Vector3::new(c.x*cos+c.z*sin,c.y,-c.x*sin+c.z*cos);
                         let view_pos=Vector3::new(
-                            pos.x+direction.x*0.68+right.x*0.18-forward.x*recoil-pivot.x*scale,
-                            pos.y+direction.y*0.68-0.26+lift-pivot.y*scale,
-                            pos.z+direction.z*0.68+right.z*0.18-forward.z*recoil-pivot.z*scale);
+                            pos.x+direction.x*0.76+right.x*0.31-forward.x*recoil-pivot.x*scale,
+                            pos.y+direction.y*0.76-0.32+lift-pivot.y*scale,
+                            pos.z+direction.z*0.76+right.z*0.31-forward.z*recoil-pivot.z*scale);
                         world.draw_model_ex(&visual.model,view_pos,
                             Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
                             Vector3::new(scale,scale,scale),Color::WHITE);
