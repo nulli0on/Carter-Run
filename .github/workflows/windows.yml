@@ -1,0 +1,31 @@
+name: Windows Rust build
+on:
+  push:
+    branches: [feature/v17-animation-compat]
+    paths:
+      - 'src/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/windows.yml'
+  workflow_dispatch:
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run Rust tests
+        run: cargo test
+      - name: Build Windows release executable
+        run: cargo build --release
+      - name: Verify executable produced
+        shell: pwsh
+        run: |
+          if (!(Test-Path "target/release/run-carter.exe")) { throw "Windows executable missing" }
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: RUN_CARTER_v17_Windows_EXE
+          path: target/release/run-carter.exe
+          if-no-files-found: error
