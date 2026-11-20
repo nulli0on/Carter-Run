@@ -903,6 +903,7 @@ fn main() {
     let crate_model=rl.load_model(&thread,"assets/arsenal/military_crate.glb").ok();
     let mut selected_visual:Option<WeaponVisual>=None;
     let mut selected_model_idx:Option<usize>=None;
+    let mut pending_visual_idx:Option<usize>=None;
     let mut ui_target=rl.load_render_texture(&thread,carteros::W as u32,carteros::H as u32)
         .expect("CarterOS 1440x900 framebuffer could not be allocated");
     let mut os=CarterOs::new();
@@ -1218,9 +1219,17 @@ fn main() {
         }
         previous_alarm=now_alarm;
         if game.screen==Screen::Office && selected_model_idx!=Some(game.arsenal.selected) {
-            if selected_model_idx.is_some() {game.audio_events.push(Cue::WeaponDraw);}
-            selected_model_idx=Some(game.arsenal.selected);
-            selected_visual=WeaponVisual::load(&mut rl,&thread,game.arsenal.selected);
+            let target=game.arsenal.selected;
+            if pending_visual_idx.is_some(){
+                // If player cycles twice while a holster is finishing, keep the latest selection.
+                pending_visual_idx=Some(target);
+            }else if selected_visual.as_mut().is_some_and(|v|v.trigger(WeaponMotion::Holster)){
+                pending_visual_idx=Some(target);
+            }else{
+                if selected_model_idx.is_some(){game.audio_events.push(Cue::WeaponDraw);}
+                selected_model_idx=Some(target);
+                selected_visual=WeaponVisual::load(&mut rl,&thread,target);
+            }
         }
         // Gameplay animation triggers are independent from sound/mute settings.
         let frame_cues=game.audio_events.take();
@@ -1235,6 +1244,14 @@ fn main() {
             }
             if manual_reload_requested{visual.trigger(WeaponMotion::Reload);}
             visual.update(&mut rl,&thread,dt);
+        }
+        if let Some(target)=pending_visual_idx {
+            if selected_visual.as_ref().is_none_or(|v|v.status().0=="idle"){
+                game.audio_events.push(Cue::WeaponDraw);
+                selected_model_idx=Some(target);
+                selected_visual=WeaponVisual::load(&mut rl,&thread,target);
+                pending_visual_idx=None;
+            }
         }
         if os.system.speakers {
             for cue in frame_cues {
