@@ -86,7 +86,7 @@ impl Tracker {
             }
         }
         v.run.bullshit_streak=v.run.bullshit_streak.min(1_000_000);
-        v.run.arsenal_mask &= (1u16<<crate::arsenal::COUNT)-1;
+        v.run.arsenal_mask &= ((1u32<<crate::arsenal::COUNT)-1) as u16;
         v
     }
     pub fn save(&self)->std::io::Result<()> {
