@@ -19,7 +19,7 @@ pub const CATALOG:[Weapon;COUNT]=[
     Weapon{name:"Foam Knife",asset:"knife.glb",cost:90,charges:99,range:1.2,cooldown:0.65,burst:1},
     Weapon{name:"Mark 23 (prop)",asset:"mark23.glb",cost:180,charges:32,range:6.0,cooldown:0.45,burst:1},
     Weapon{name:"Vector (prop)",asset:"vector.glb",cost:360,charges:48,range:5.0,cooldown:0.23,burst:1},
-    Weapon{name:"M4 (prop)",asset:"m4.glb",cost:470,charges:48,range:7.5,cooldown:0.28,burst:1},
+    Weapon{name:"M4 (prop)",asset:"m4_raylib.glb",cost:470,charges:48,range:7.5,cooldown:0.28,burst:1},
     Weapon{name:"Minigun (prop)",asset:"minigun.glb",cost:1300,charges:120,range:6.0,cooldown:0.09,burst:2},
     Weapon{name:"Confetti Flamethrower",asset:"flamethrower.glb",cost:980,charges:80,range:3.0,cooldown:0.14,burst:3},
     Weapon{name:"T-Shirt RPG (prop)",asset:"rpg7.glb",cost:1100,charges:8,range:9.0,cooldown:2.3,burst:6},

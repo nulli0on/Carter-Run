@@ -109,6 +109,12 @@ impl WeaponVisual{
     pub fn load(rl:&mut RaylibHandle,thread:&RaylibThread,slot:usize)->Option<Self>{
         let weapon=arsenal::CATALOG.get(slot)?;
         let path=format!("assets/arsenal/{}",weapon.asset);
+        // Original M4 is specular/glossiness-only. Full asset packages ship a
+        // PBR fallback copy for raylib 6; source-only checkouts may still load
+        // the unchanged original asset when the derived copy is unavailable.
+        let path=if slot==4 && !std::path::Path::new(&path).is_file(){
+            "assets/arsenal/m4.glb".to_string()
+        }else{path};
         let model=match rl.load_model(thread,&path){
             Ok(m)=>m,
             Err(e)=>{eprintln!("Weapon mesh slot={slot} asset={} unavailable: {e:?}",weapon.asset);return None;}
