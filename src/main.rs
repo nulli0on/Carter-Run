@@ -1228,8 +1228,10 @@ fn main() {
                         // Distinctive source recordings only where available. Other props remain silent.
                         match index {
                             4=>{if let Some(ref s)=m4_sound{s.play();}},
-                            3|5=>{if let Some(ref s)=machine_sound{s.play();}},
-                            2=>{if let Some(ref s)=gunshot_sound{s.play();}},
+                            3|5|13=>{if let Some(ref s)=machine_sound{s.play();}},
+                            2|10|11|14|15=>{if let Some(ref s)=gunshot_sound{s.play();}},
+                            7|8|9=>{if let Some(ref s)=explosion_sound{s.play();}},
+                            // Megaphone, cardboard, knife and flamethrower need suitable custom clips.
                             _=>{},
                         }
                     },
