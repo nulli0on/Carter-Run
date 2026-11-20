@@ -24,7 +24,7 @@ pub struct Snapshot {
     pub sugar_hits:u32,pub sugar_timer:f32,pub sugar_visible:bool,
     pub sugar_boost:f32,pub campaign_won:bool,
     pub bailout_debt:i32,pub bailout_last_day:u32,
-    pub weapon_owned:u16,pub weapon_charges:[u16;10],pub weapon_selected:u8,
+    pub weapon_owned:u16,pub weapon_charges:[u16;crate::arsenal::COUNT],pub weapon_selected:u8,
 }
 
 impl Snapshot {
@@ -108,9 +108,18 @@ impl Snapshot {
             weapon_charges:match value("weapon_charges") {
                 Some(list)=>{
                     let parsed:Vec<u16>=list.split(',').map(str::parse).collect::<Result<_,_>>().ok()?;
-                    parsed.try_into().ok()?
+                    match parsed.len(){
+                        crate::arsenal::COUNT => parsed.try_into().ok()?,
+                        // v0.14 legacy saves have only ten inventory charge slots.
+                        10 => {
+                            let mut expanded=[0u16;crate::arsenal::COUNT];
+                            expanded[..10].copy_from_slice(&parsed);
+                            expanded
+                        },
+                        _ => return None,
+                    }
                 },
-                None=>{let mut c=[0u16;10];c[0]=99;c}
+                None=>{let mut c=[0u16;crate::arsenal::COUNT];c[0]=99;c}
             },
         };
         if snap.validate() {Some(snap)}else{None}
@@ -138,10 +147,23 @@ mod tests {
         airhorns:2,confetti_cannons:1,drones:0,sugar_hits:0,sugar_timer:-1.0,
         sugar_visible:false,sugar_boost:0.0,campaign_won:false,
         bailout_debt:0,bailout_last_day:0,
-        weapon_owned:1,weapon_charges:[99,0,0,0,0,0,0,0,0,0],weapon_selected:0} }
+        weapon_owned:1,weapon_charges:{let mut c=[0;crate::arsenal::COUNT];c[0]=99;c},weapon_selected:0} }
     #[test] fn round_trip_and_atomic_file() {
         let data=sample();let path=std::env::temp_dir().join(format!("run_carter_snapshot_{}.cfg",std::process::id()));
         data.save(&path).unwrap();assert_eq!(Some(data),Snapshot::load(&path));let _=fs::remove_file(path);
+    }
+    #[test] fn legacy_ten_weapon_save_is_upgraded_without_losing_cash(){
+        let mut old=sample();old.money=724;old.weapon_owned=0b10001;
+        old.weapon_charges[4]=12;old.weapon_selected=4;
+        let legacy=old.encode().replace(
+            &format!("weapon_charges={}",old.weapon_charges.iter().map(u16::to_string).collect::<Vec<_>>().join(",")),
+            &format!("weapon_charges={}",old.weapon_charges[..10].iter().map(u16::to_string).collect::<Vec<_>>().join(","))
+        );
+        let got=Snapshot::decode(&legacy).unwrap();
+        assert_eq!(got.money,724);assert_eq!(got.weapon_selected,4);
+        assert_eq!(got.weapon_charges[4],12);
+        assert!(got.weapon_charges[10..].iter().all(|v|*v==0));
+        assert_eq!(got.weapon_owned,0b10001);
     }
     #[test] fn reject_tampered_values_and_unknown_orders() {
         let data=sample();let text=data.encode();

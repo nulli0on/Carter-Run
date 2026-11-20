@@ -819,7 +819,7 @@ impl CarterOs {
                 } else if (200..616).contains(&y){
                     let row=(y-200)/52;
                     let item=match self.shop_page{0=>row+1,1=>row+9,_=>row+17};
-                    if (1..=18).contains(&item) && (self.shop_page!=2 || row<2){out.push(Action::BuyItem(item));}
+                    if (1..=8+crate::arsenal::COUNT as i32).contains(&item) && row<8{out.push(Action::BuyItem(item));}
                 }
             }
             App::AppleStore => {

@@ -818,8 +818,8 @@ fn draw_overlay(d: &mut RaylibDrawHandle<'_>, g: &Game) {
     d.draw_text(&format!("WASD | SHIFT | {prompt} | Q: Pi Z: Horn X: Confetti C: Drone R: Sugar | F12: Console"),20,h-35,15,white);
     d.draw_rectangle(15,h-85,370,64,Color::new(16,22,37,218));
     let wpn=&arsenal::CATALOG[g.arsenal.selected];
-    d.draw_text(&format!("{}  |  {} charges",wpn.name,g.arsenal.charges[g.arsenal.selected]),25,h-76,17,white);
-    d.draw_text("1-0: equip  |  Left-click: distract  |  B: catalog",25,h-52,14,muted);
+    d.draw_text(&format!("[{} / {}] {}  |  {} charges",g.arsenal.selected+1,arsenal::COUNT,wpn.name,g.arsenal.charges[g.arsenal.selected]),25,h-76,17,white);
+    d.draw_text("1-0 / wheel / PgUp-PgDn: equip  |  Click: distract  |  B: preview",25,h-52,14,muted);
     d.draw_line(w/2-7,h/2,w/2+7,h/2,Color::WHITE);
     d.draw_line(w/2,h/2-7,w/2,h/2+7,Color::WHITE);
 }
@@ -1041,6 +1041,14 @@ fn main() {
                         if rl.is_key_pressed(*key) && !game.arsenal.equip(i) {
                             game.inform("This model is not yet owned. Purchase it in AmazonCrime.");
                         }
+                    }
+                    // Scroll / PageUp / PageDown cycles ALL owned items while
+                    // 1..0 keep their legacy direct-selection behavior.
+                    let wheel=rl.get_mouse_wheel_move();
+                    if wheel.abs()>0.01 || rl.is_key_pressed(KeyboardKey::KEY_PAGE_UP) || rl.is_key_pressed(KeyboardKey::KEY_PAGE_DOWN){
+                        let next=if wheel.abs()>0.01 {wheel<0.0}
+                            else {rl.is_key_pressed(KeyboardKey::KEY_PAGE_UP)};
+                        game.arsenal.cycle(next);
                     }
                     if rl.is_mouse_button_pressed(MouseButton::MOUSE_BUTTON_LEFT){game.fire_equipped();}
                     if rl.is_key_pressed(KeyboardKey::KEY_B){show_weapon_preview=!show_weapon_preview;}
@@ -1308,7 +1316,10 @@ fn main() {
                     if let Some(ref model)=selected_model {
                         // The source assets have radically different dimensions. These initial
                         // scale values are only a preview and need visual calibration after CI.
-                        const SCALES:[f32;10]=[0.006,0.008,0.003,0.003,0.003,0.005,0.006,0.006,0.008,0.6];
+                        // Original first ten previews preserved; new meshes use provisional scales
+                        // until calibrated with the actual source GLBs in a windowed game.
+                        const SCALES:[f32;arsenal::COUNT]=[0.006,0.008,0.003,0.003,0.003,0.005,0.006,0.006,0.008,0.6,
+                            0.005,0.005,0.005,0.005,0.005,0.005];
                         world.draw_model(model,Vector3::new(-0.2,0.8,-1.65),SCALES[game.arsenal.selected],Color::WHITE);
                     }
                 }
@@ -1460,6 +1471,16 @@ mod game_tests {
         assert!(g.achievements.run.detonated);
         g.achievements.restart_clean_run();
         assert!(!g.achievements.run.detonated);
+    }
+    #[test]
+    fn six_new_shop_items_keep_old_purchase_ids(){
+        let mut g=Game::new();g.achievements=Tracker::default();g.money=15_000;
+        for index in 10..arsenal::COUNT {g.buy(arsenal::FIRST_SHOP_ID+index as i32);}
+        assert!(g.arsenal.owned[15]);
+        assert_eq!(arsenal::CATALOG[0].name,"Cardboard Blaster");
+        assert_eq!(arsenal::CATALOG[9].name,"Dynamite Pinata (prop)");
+        assert!(g.arsenal.equip(15));
+        assert_eq!(g.arsenal.selected,15);
     }
     #[test]
     fn all_arsenal_gadgets_are_purchasable(){

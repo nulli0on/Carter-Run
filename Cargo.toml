@@ -1,8 +1,8 @@
 [package]
 name = "run-carter"
-version = "0.13.0"
+version = "0.15.0"
 edition = "2021"
-description = "RUN CARTER CarterOS, AmazonCrime arsenal, and event-driven audio (Rust + raylib)"
+description = "RUN CARTER CarterOS, AmazonCrime arsenal, and updated 16-item armory (Rust + raylib)"
 
 [features]
 default = []
