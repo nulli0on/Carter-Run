@@ -15,7 +15,9 @@ mod debug_console;
 mod integrity;
 mod arsenal;
 mod audio_events;
+mod weapon_animation;
 use audio_events::Cue;
+use weapon_animation::{Motion as WeaponMotion, WeaponVisual};
 use achievements::Tracker;
 use std::time::{SystemTime,UNIX_EPOCH,Instant};
 use debug_console::{Command as DebugCommand,Console as DebugConsole};
@@ -819,7 +821,7 @@ fn draw_overlay(d: &mut RaylibDrawHandle<'_>, g: &Game) {
     d.draw_rectangle(15,h-85,370,64,Color::new(16,22,37,218));
     let wpn=&arsenal::CATALOG[g.arsenal.selected];
     d.draw_text(&format!("[{} / {}] {}  |  {} charges",g.arsenal.selected+1,arsenal::COUNT,wpn.name,g.arsenal.charges[g.arsenal.selected]),25,h-76,17,white);
-    d.draw_text("1-0 / wheel / PgUp-PgDn: equip  |  Click: distract  |  B: preview",25,h-52,14,muted);
+    d.draw_text("1-0/wheel/PgUp-PgDn: equip | Click: fire | R: inspect/reload anim | B: show/hide",25,h-52,14,muted);
     d.draw_line(w/2-7,h/2,w/2+7,h/2,Color::WHITE);
     d.draw_line(w/2,h/2-7,w/2,h/2+7,Color::WHITE);
 }
@@ -899,7 +901,7 @@ fn main() {
     let assets=OsAssets::load(&mut rl,&thread);
     let fan_model=rl.load_model(&thread,"assets/arsenal/fan_character.glb").ok();
     let crate_model=rl.load_model(&thread,"assets/arsenal/military_crate.glb").ok();
-    let mut selected_model:Option<Model>=None;
+    let mut selected_visual:Option<WeaponVisual>=None;
     let mut selected_model_idx:Option<usize>=None;
     let mut ui_target=rl.load_render_texture(&thread,carteros::W as u32,carteros::H as u32)
         .expect("CarterOS 1440x900 framebuffer could not be allocated");
@@ -933,7 +935,7 @@ fn main() {
     let mut cursor_on=false;
     let mut console=DebugConsole::default();
     let mut debug_enabled=false;
-    let mut show_weapon_preview=false;
+    let mut show_weapon_preview=true; // Animated first-person weapon model (B toggles).
     let mut last_money=game.money;
     let mut last_wall=SystemTime::now();
     let mut last_mono=Instant::now();
@@ -943,6 +945,7 @@ fn main() {
         if smoke_frames.is_some_and(|n|rendered_frames>=n){break;}
         rendered_frames=rendered_frames.saturating_add(1);
         let dt=rl.get_frame_time().min(0.05);
+        let mut manual_reload_requested=false;
         game.audio_events.advance(dt);
         steam.tick();
         // In-game timers rely on monotonic frame delta, never the system clock.
@@ -1056,7 +1059,15 @@ fn main() {
                     if rl.is_key_pressed(KeyboardKey::KEY_Z){game.use_airhorn();}
                     if rl.is_key_pressed(KeyboardKey::KEY_X){game.use_confetti();}
                     if rl.is_key_pressed(KeyboardKey::KEY_C){game.deploy_drone();}
-                    if rl.is_key_pressed(KeyboardKey::KEY_R){game.take_sugar();}
+                    if rl.is_key_pressed(KeyboardKey::KEY_R){
+                        if game.sugar_visible && (game.x-0.10).hypot(game.z+1.65)<=0.85 {
+                            game.take_sugar();
+                        }else{
+                            // Current mechanics use purchased charges, not magazines.
+                            // R is a visual reload/inspection; it does NOT grant free ammo.
+                            manual_reload_requested=true;
+                        }
+                    }
                     if rl.is_key_pressed(KeyboardKey::KEY_F){
                         game.collect_deliveries();
                         let _=game.save_campaign();
@@ -1209,10 +1220,24 @@ fn main() {
         if game.screen==Screen::Office && selected_model_idx!=Some(game.arsenal.selected) {
             if selected_model_idx.is_some() {game.audio_events.push(Cue::WeaponDraw);}
             selected_model_idx=Some(game.arsenal.selected);
-            selected_model=rl.load_model(&thread,&format!("assets/arsenal/{}",arsenal::CATALOG[game.arsenal.selected].asset)).ok();
+            selected_visual=WeaponVisual::load(&mut rl,&thread,game.arsenal.selected);
+        }
+        // Gameplay animation triggers are independent from sound/mute settings.
+        let frame_cues=game.audio_events.take();
+        if let Some(ref mut visual)=selected_visual {
+            for cue in &frame_cues {
+                match *cue {
+                    Cue::WeaponFire(index) if index as usize==game.arsenal.selected => {
+                        visual.trigger(WeaponMotion::Fire);
+                    },
+                    _=>{},
+                }
+            }
+            if manual_reload_requested{visual.trigger(WeaponMotion::Reload);}
+            visual.update(&mut rl,&thread,dt);
         }
         if os.system.speakers {
-            for cue in game.audio_events.take() {
+            for cue in frame_cues {
                 // The system-sounds switch silences interface feedback but not gameplay sounds.
                 let is_ui=matches!(cue,Cue::ComputerOpen|Cue::Keyboard|Cue::MailHandled|Cue::ShopPurchase|Cue::ShopDenied);
                 if is_ui && !os.system.system_sounds {continue;}
@@ -1242,7 +1267,7 @@ fn main() {
                     Cue::WeaponEmpty|Cue::Airhorn|Cue::Confetti|Cue::Drone|Cue::SugarWarning=>{},
                 }
             }
-        } else {game.audio_events.take();}
+        }
         let should_show_cursor=game.screen==Screen::Computer;
         if should_show_cursor!=cursor_on{
             if should_show_cursor{rl.enable_cursor();}else{rl.disable_cursor();}
@@ -1315,14 +1340,22 @@ fn main() {
                     world.draw_cube_wires(Vector3::new(0.10,0.13,-1.65),0.23,0.20,0.23,Color::GOLD);
                 }
                 if show_weapon_preview {
-                    if let Some(ref model)=selected_model {
-                        // The source assets have radically different dimensions. These initial
-                        // scale values are only a preview and need visual calibration after CI.
-                        // Original first ten previews preserved; new meshes use provisional scales
-                        // until calibrated with the actual source GLBs in a windowed game.
+                    if let Some(ref visual)=selected_visual {
+                        // User GLBs vary widely in native scale; these remain provisional
+                        // until the fully asset-loaded visual QA captures each weapon.
                         const SCALES:[f32;arsenal::COUNT]=[0.006,0.008,0.003,0.003,0.003,0.005,0.006,0.006,0.008,0.6,
                             0.005,0.005,0.005,0.005,0.005,0.005];
-                        world.draw_model(model,Vector3::new(-0.2,0.8,-1.65),SCALES[game.arsenal.selected],Color::WHITE);
+                        // Camera-relative position and yaw: no longer a fixed weapon left on
+                        // the desk. The original authored animation transforms remain intact.
+                        let right=Vector3::new(game.yaw.cos(),0.0,-game.yaw.sin());
+                        let view_pos=Vector3::new(
+                            pos.x+direction.x*0.68+right.x*0.18,
+                            pos.y+direction.y*0.68-0.26,
+                            pos.z+direction.z*0.68+right.z*0.18);
+                        let scale=SCALES[game.arsenal.selected];
+                        world.draw_model_ex(&visual.model,view_pos,
+                            Vector3::new(0.0,1.0,0.0),game.yaw.to_degrees(),
+                            Vector3::new(scale,scale,scale),Color::WHITE);
                     }
                 }
                 for kid in &game.kids{
