@@ -175,7 +175,7 @@ impl WeaponVisual{
     }
     #[test]fn named_action_transitions(){
         let mut p=Player::new(4);assert_eq!(p.state(),Motion::Draw);
-        assert!(p.step(.05).unwrap().1>8.967*SAMPLE_HZ);
+        assert!(p.step(0.05).unwrap().1>8.967*SAMPLE_HZ);
         for _ in 0..70{p.step(1.0/60.0);}
         assert_eq!(p.state(),Motion::Idle);
         p.trigger(Motion::Fire);assert_eq!(p.step(0.03).unwrap().0,2);
@@ -183,8 +183,8 @@ impl WeaponVisual{
     }
     #[test]fn merged_track_not_restarted_by_auto_fire(){
         let mut p=Player::new(5);p.trigger(Motion::Fire);
-        let a=p.step(.1).unwrap().1;p.trigger(Motion::Fire);
-        let b=p.step(.1).unwrap().1;assert!(b>a);
+        let a=p.step(0.1).unwrap().1;p.trigger(Motion::Fire);
+        let b=p.step(0.1).unwrap().1;assert!(b>a);
     }
     #[test]fn pistol_idle_loops(){
         let mut p=Player::new(15);p.trigger(Motion::Idle);
@@ -201,17 +201,17 @@ impl WeaponVisual{
     }
     #[test]fn procedural_holster_and_draw_complete(){
         let mut p=Player::new(7);
-        for _ in 0..19{p.step(.02);}
+        for _ in 0..19{p.step(0.02);}
         assert_eq!(p.state(),Motion::Idle);
         p.trigger(Motion::Holster);
-        for _ in 0..13{p.step(.02);}
+        for _ in 0..13{p.step(0.02);}
         assert_eq!(p.state(),Motion::Idle);
     }
     #[test]fn static_prop_firing_has_procedural_recoil(){
         let mut p=Player::new(8);p.trigger(Motion::Fire);
-        assert!(p.step(.05).is_none());
+        assert!(p.step(0.05).is_none());
         assert_eq!(p.state(),Motion::Fire);
-        for _ in 0..4{p.step(.05);}
+        for _ in 0..4{p.step(0.05);}
         assert_eq!(p.state(),Motion::Idle);
     }
 }
