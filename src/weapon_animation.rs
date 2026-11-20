@@ -115,7 +115,7 @@ impl WeaponVisual{
         };
         let bbox=model.get_model_bounding_box();
         let extent=(bbox.max.x-bbox.min.x).max(bbox.max.y-bbox.min.y).max(bbox.max.z-bbox.min.z);
-        let scale=if extent.is_finite() && extent>1e-5{(0.70/extent).clamp(0.0001,0.9)}else{0.005};
+        let scale=if extent.is_finite() && extent>1e-5{(0.38/extent).clamp(0.0001,0.9)}else{0.005};
         let center=Vector3::new(
             (bbox.min.x+bbox.max.x)*0.5,(bbox.min.y+bbox.max.y)*0.5,(bbox.min.z+bbox.max.z)*0.5
         );
