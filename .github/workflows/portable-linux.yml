@@ -1,7 +1,7 @@
 name: Portable Linux build (glibc 2.39)
 on:
   push:
-    branches: [feature/v17-animation-compat]
+    branches: [feature/v18-animation-compat, feature/v18-viewmodel-qa]
     paths:
       - 'src/**'
       - 'Cargo.toml'
@@ -34,6 +34,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: run-carter-linux-portable-v17
+          name: run-carter-linux-portable-v18
           path: target/release/run-carter
           if-no-files-found: error
