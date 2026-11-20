@@ -1,7 +1,7 @@
 name: Windows Rust build
 on:
   push:
-    branches: [feature/v17-animation-compat]
+    branches: [feature/v18-animation-compat, feature/v18-viewmodel-qa]
     paths:
       - 'src/**'
       - 'Cargo.toml'
@@ -26,6 +26,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: RUN_CARTER_v17_Windows_EXE
+          name: RUN_CARTER_v18_Windows_EXE
           path: target/release/run-carter.exe
           if-no-files-found: error
