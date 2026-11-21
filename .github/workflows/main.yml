@@ -1,4 +1,5 @@
 
+
 name: Extract ZIP files
 
 on:
@@ -18,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract ZIP files into repository root
+      - name: Extract ZIP files in their own folders
         shell: bash
         run: |
           set -euo pipefail
@@ -28,6 +29,7 @@ jobs:
           import shutil
           import stat
           import subprocess
+          import tempfile
           import zipfile
           from pathlib import Path, PurePosixPath
 
@@ -39,11 +41,12 @@ jobs:
               check=True,
           )
 
-          zip_files = [
+          zip_files = sorted(
               root / os.fsdecode(name)
               for name in result.stdout.split(b"\0")
               if name
-          ]
+          )
+          zip_paths = set(zip_files)
 
           if not zip_files:
               print("No ZIP files found.")
@@ -52,16 +55,19 @@ jobs:
               if not zip_path.is_file():
                   continue
 
+              # IMPORTANT:
+              # Extract beside the ZIP, NOT into root.
+              destination = zip_path.parent
+
               print(f"Processing: {zip_path.relative_to(root)}")
+              print(f"Destination: {destination.relative_to(root)}")
 
               with zipfile.ZipFile(zip_path) as archive:
                   entries = []
-                  destinations = set()
 
-                  # Validate all entries before extraction.
+                  # Validate all paths before extraction.
                   for item in archive.infolist():
                       name = item.filename
-
                       if not name:
                           continue
 
@@ -72,7 +78,8 @@ jobs:
                           or "\\" in name
                           or ".." in parts
                           or not parts
-                          or parts[0] in {".git", ".github"}
+                          or ".git" in parts
+                          or ".github" in parts
                           or ":" in parts[0]
                       ):
                           raise ValueError(
@@ -96,32 +103,36 @@ jobs:
                               f"Unsupported ZIP entry: {name}"
                           )
 
-                      target = root.joinpath(*parts)
+                      target = destination.joinpath(*parts)
 
-                      # Never follow existing symlink folders.
-                      for parent in target.parents:
-                          if parent == root.parent:
+                      if target in zip_paths:
+                          raise ValueError(
+                              f"ZIP source conflict: {name}"
+                          )
+
+                      # Never follow existing symlinks.
+                      for path in (target, *target.parents):
+                          if path == root.parent:
                               break
-                          if parent.is_symlink():
+                          if path.is_symlink():
                               raise ValueError(
                                   f"Symlink path: {name}"
                               )
 
-                      if not item.is_dir():
-                          if (
-                              target.exists()
-                              or target.is_symlink()
-                              or target in destinations
-                          ):
-                              raise FileExistsError(
-                                  f"File already exists: {name}"
+                      # Reject file/directory conflicts.
+                      if item.is_dir():
+                          if target.exists() and not target.is_dir():
+                              raise ValueError(
+                                  f"Directory conflict: {name}"
                               )
-
-                          destinations.add(target)
+                      elif target.is_dir():
+                          raise ValueError(
+                              f"File conflicts with directory: {name}"
+                          )
 
                       entries.append((item, target))
 
-                  # Extract directly into repository root.
+                  # Extract into the ZIP's own folder.
                   for item, target in entries:
                       if item.is_dir():
                           target.mkdir(
@@ -135,20 +146,32 @@ jobs:
                           exist_ok=True
                       )
 
-                      with archive.open(item) as source:
-                          with target.open("xb") as output:
-                              shutil.copyfileobj(
-                                  source, output
-                              )
+                      if target.exists():
+                          print(f"Updating: {target.relative_to(root)}")
+                      else:
+                          print(f"Creating: {target.relative_to(root)}")
 
-                      print(
-                          f"Extracted: "
-                          f"{target.relative_to(root)}"
-                      )
+                      temp_path = None
+                      try:
+                          with tempfile.NamedTemporaryFile(
+                              dir=target.parent,
+                              delete=False
+                          ) as output:
+                              temp_path = Path(output.name)
+                              with archive.open(item) as source:
+                                  shutil.copyfileobj(source, output)
 
+                          os.replace(temp_path, target)
+
+                      finally:
+                          if temp_path is not None:
+                              temp_path.unlink(missing_ok=True)
+
+              # Remove only the processed ZIP.
               zip_path.unlink()
-              print(f"Deleted ZIP: {zip_path.name}")
+              print(f"Finished: {zip_path.name}")
 
+          print("All ZIP files processed.")
           PY
 
       - name: Commit extracted files
@@ -167,5 +190,5 @@ jobs:
           git config user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git commit -m "Extract ZIP contents to root"
+          git commit -m "Extract ZIP files in place"
           git push
