@@ -1,0 +1,286 @@
+{
+  "asset_count": 21,
+  "weapon_count": 16,
+  "note": "Preserve 10 legacy equipment indices. New six weapons at index 10..15. Old grenade and dynamite replaced with user assets. Commercial distribution rights for GLBs are not verified.",
+  "previous_replaced_hashes": {
+    "grenade.glb": "7af267535628e341cb67189390561c58ab1a773d6534668a6bc76fb8e6c46b39",
+    "dynamite.glb": "50dba10275395a82b460ef1a1aa5e9d14d10ce386d5bdfea76dec88c227029f1"
+  },
+  "models": [
+    {
+      "file": "arms.glb",
+      "size_bytes": 4504496,
+      "sha256": "87453e535e035b989ac1e3709b11471dc7bc75ea62a3e04e42730f7b60655b04",
+      "meshes": 1,
+      "textures": 3,
+      "animations": [],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "cardboard_blaster.glb",
+      "size_bytes": 1428652,
+      "sha256": "85cb8d92b05dfa300f94ff7eacd8c6321229220bfcd57da72c9fdfdd5ab58dbe",
+      "meshes": 6,
+      "textures": 2,
+      "animations": [
+        "Animation"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "dynamite.glb",
+      "size_bytes": 1877228,
+      "sha256": "96ce4e3003fb5f63c6ef00356de2cc0f193178fbc625b801f15ea30f02babd95",
+      "meshes": 1,
+      "textures": 3,
+      "animations": [],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "dynamite_stick.glb",
+      "provenance": "replaces original v0.14 model"
+    },
+    {
+      "file": "fan_character.glb",
+      "size_bytes": 13365096,
+      "sha256": "49963c89841458ea44b7ec3d25bcb32efd7e1bc8938b78f7aab50faae4211426",
+      "meshes": 12,
+      "textures": 16,
+      "animations": [
+        "mixamo.com"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "flamethrower.glb",
+      "size_bytes": 7015932,
+      "sha256": "d0d0c492278cd050a995528f55ca46bf6cbb6373c0b0bdf60bb9027d57451bf5",
+      "meshes": 6,
+      "textures": 6,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "grenade.glb",
+      "size_bytes": 4673216,
+      "sha256": "5209eee0452e8a872b072ee9f32fdf629ddfe0ebd9dad4729dab68c638aff51c",
+      "meshes": 1,
+      "textures": 3,
+      "animations": [],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "granate.glb",
+      "provenance": "replaces original v0.14 model"
+    },
+    {
+      "file": "grenadelauncher.glb",
+      "size_bytes": 8289848,
+      "sha256": "d94aac4a1d2ccf6cc1a2b7e33d3afd453a8fbe410d530ba0b57faadb4a59c013",
+      "meshes": 8,
+      "textures": 6,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "grenadelauncher_animated.glb",
+      "provenance": "new weapon"
+    },
+    {
+      "file": "knife.glb",
+      "size_bytes": 5548288,
+      "sha256": "75db23c67db2ffc70e86475e7a64437eedf71adc600606a3a239a0b897581cde",
+      "meshes": 2,
+      "textures": 6,
+      "animations": [
+        "anims"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "lmg.glb",
+      "size_bytes": 10626104,
+      "sha256": "7f84ae3cbaf69ce4caa5894ee62f5af2a4de1d5ee42b31ff7484ff9e770972e9",
+      "meshes": 23,
+      "textures": 6,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "lmg_animated.glb",
+      "provenance": "new weapon"
+    },
+    {
+      "file": "m4.glb",
+      "size_bytes": 6648772,
+      "sha256": "8839159fe724392a364518bf993def080eed5056ec65818d4afbee505a39f193",
+      "meshes": 11,
+      "textures": 10,
+      "animations": [
+        "Draw",
+        "Reload",
+        "Fire",
+        "Reload_Empty",
+        "Holster"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "mark23.glb",
+      "size_bytes": 2293808,
+      "sha256": "12ca9d37eb7044be77076df250728edaf731d121caed16c6f9c47969a7ccfa9f",
+      "meshes": 5,
+      "textures": 3,
+      "animations": [
+        "Reload",
+        "Shoot",
+        "Hide",
+        "Draw"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "military_crate.glb",
+      "size_bytes": 3221936,
+      "sha256": "0d1981317053bddd04d9a14e6e912550ed8b18ec951807700a4a0e2da06f5650",
+      "meshes": 5,
+      "textures": 3,
+      "animations": [],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "minigun.glb",
+      "size_bytes": 8870624,
+      "sha256": "9ad41eadc7cc8dc128cceb7a1d021f7d099ceb2a0512753f2b3fc9b95afe500e",
+      "meshes": 7,
+      "textures": 6,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "persuader.glb",
+      "size_bytes": 10076364,
+      "sha256": "8e6b34c5e97a8e7ac5c15d7cec8164f48006286971363a0bf3da05474e4b103a",
+      "meshes": 6,
+      "textures": 6,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "persuader_animated.glb",
+      "provenance": "new weapon"
+    },
+    {
+      "file": "pistol.glb",
+      "size_bytes": 8213096,
+      "sha256": "1ae2718c5caa5a944ad6e604cfc0f609cf26dd9fb50e8d12e25c10a899b39c58",
+      "meshes": 2,
+      "textures": 6,
+      "animations": [
+        "Armature|EmptyClipReload",
+        "Armature|Fire",
+        "Armature|Hide",
+        "Armature|Idle",
+        "Armature|ReloadClip",
+        "Armature|Unhide",
+        "Armature|Weild"
+      ],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "pistol_animated.glb",
+      "provenance": "new weapon"
+    },
+    {
+      "file": "rpg7.glb",
+      "size_bytes": 6963248,
+      "sha256": "d728d6084213aa023042591d0e9e169be67e3d8ab6635210ec4a4e80a8377bcd",
+      "meshes": 5,
+      "textures": 6,
+      "animations": [],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "shotgun.glb",
+      "size_bytes": 8503144,
+      "sha256": "9e93830e00d408e4daef8a708b26b924d5678957480099063a0a9041d75ad4f7",
+      "meshes": 6,
+      "textures": 6,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "shotgun_animated.glb",
+      "provenance": "new weapon"
+    },
+    {
+      "file": "sniper.glb",
+      "size_bytes": 8675360,
+      "sha256": "bd816bccb818a6f25851631ea781e0dc84f7b903b49b6cb053889cc0d1ad799a",
+      "meshes": 12,
+      "textures": 7,
+      "animations": [
+        "allanims"
+      ],
+      "source_archive": "Archiv(10).zip",
+      "uploaded_file": "sniper_animated.glb",
+      "provenance": "new weapon"
+    },
+    {
+      "file": "storage_crates.glb",
+      "size_bytes": 7934492,
+      "sha256": "c64202a15fbafa7872871923e3d4df35b44729b0f67d2dd730c8813b3e052182",
+      "meshes": 3,
+      "textures": 9,
+      "animations": [],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "vector.glb",
+      "size_bytes": 2842892,
+      "sha256": "e8e1060b1de28b5bfd34cb7663980be3febebdb9dabb7ad142621c3109192882",
+      "meshes": 4,
+      "textures": 3,
+      "animations": [
+        "Draw",
+        "Shoot",
+        "Reload",
+        "Hide"
+      ],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    },
+    {
+      "file": "weapon_crate.glb",
+      "size_bytes": 1974968,
+      "sha256": "66c20a4139dfb6ecd407ff40a8cb9190650149bfb818939e8959f01ab6384716",
+      "meshes": 1,
+      "textures": 3,
+      "animations": [],
+      "source_archive": "RUN_CARTER_v0.14_Runtime_Smoke_FULL.zip",
+      "uploaded_file": null,
+      "provenance": "v0.14 unchanged"
+    }
+  ]
+}
