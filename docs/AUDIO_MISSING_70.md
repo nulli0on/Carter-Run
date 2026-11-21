@@ -1,0 +1,72 @@
+# RUN CARTER — Missing audio cues (70)
+
+- [ ] `os_shutdown.wav` — CarterOS shutdown
+- [ ] `os_lock.wav` — Locking the workstation
+- [ ] `os_unlock.wav` — Unlocking the workstation
+- [ ] `ui_window_close.wav` — Closing a window
+- [ ] `ui_error.wav` — System error or failed action
+- [ ] `ui_critical_alarm.wav` — Location leaked critical alarm
+- [ ] `mail_send.wav` — Sending an email
+- [ ] `mail_receive.wav` — Incoming CarterMail message
+- [ ] `web_search_submit.wav` — Submitting a search
+- [ ] `shop_purchase.wav` — Successful AmazonCrime purchase
+- [ ] `shop_payment_denied.wav` — Not enough money
+- [ ] `footsteps_run_wood.wav` — Running on wooden floor
+- [ ] `footsteps_carpet.wav` — Walking on carpet
+- [ ] `player_jump.wav` — Player jumping
+- [ ] `player_land.wav` — Landing after jump
+- [ ] `player_breath_panicked.wav` — Panic breathing during chase
+- [ ] `door_close.wav` — Closing a door
+- [ ] `door_slam.wav` — Door slamming
+- [ ] `door_lock.wav` — Locking a door
+- [ ] `door_unlock.wav` — Unlocking a door
+- [ ] `office_room_tone.wav` — Quiet office ambience loop
+- [ ] `office_item_drop.wav` — Dropping a physical item
+- [ ] `crowd_distant.wav` — Kids gathering in distance
+- [ ] `crowd_approach.wav` — Approaching crowd grows louder
+- [ ] `kid_free_pc_shout_01.wav` — Kid voice: Can I have a free PC?
+- [ ] `kid_free_pc_shout_02.wav` — Different impatient kid shout
+- [ ] `kids_wall_bang.wav` — Children hitting the walls
+- [ ] `kids_door_kick.wav` — Children kicking a door
+- [ ] `kids_run_footsteps.wav` — Several kids running
+- [ ] `kid_repelled.wav` — Fan knocked back or distracted
+- [ ] `kid_hits_player.wav` — Enemy contact with player
+- [ ] `wave_start_stinger.wav` — Wave starts
+- [ ] `wave_complete_stinger.wav` — Wave successfully survived
+- [ ] `weapon_switch.wav` — Scrolling/changing weapon
+- [ ] `weapon_mag_in.wav` — Inserting magazine
+- [ ] `weapon_dry_fire.wav` — Trying to fire empty weapon
+- [ ] `weapon_ammo_pickup.wav` — Picking up ammunition
+- [ ] `weapon_impact_wood.wav` — Projectile impact on wood
+- [ ] `weapon_impact_metal.wav` — Projectile impact on metal
+- [ ] `vector_fire_loop.wav` — Kriss Vector burst/loop
+- [ ] `dynamite_fuse.wav` — Lit dynamite fuse
+- [ ] `minigun_spin_up.wav` — Minigun motor starting
+- [ ] `minigun_spin_down.wav` — Minigun motor stopping
+- [ ] `flamethrower_ignite.wav` — Flamethrower ignition
+- [ ] `flamethrower_loop.wav` — Flamethrower burning loop
+- [ ] `flamethrower_stop.wav` — Flamethrower fuel shuts off
+- [ ] `rpg_launch.wav` — RPG projectile launches
+- [ ] `rpg_rocket_flight.wav` — Flying RPG rocket
+- [ ] `knife_swing.wav` — Knife swing through air
+- [ ] `grenade_pin_pull.wav` — Pulling grenade pin
+- [ ] `cardboard_gun_pop.wav` — Comically weak cardboard-gun fire
+- [ ] `delivery_doorbell.wav` — AmazonCrime courier arrival
+- [ ] `delivery_box_set_down.wav` — Delivery box lands outside
+- [ ] `package_open.wav` — Opening purchased package
+- [ ] `weapon_crate_open.wav` — Opening armory crate
+- [ ] `raspberry_pi_decoy_beep.wav` — Raspberry Pi distraction activated
+- [ ] `airhorn.wav` — Airhorn gadget fired
+- [ ] `confetti_cannon.wav` — Confetti cannon blast
+- [ ] `drone_motor.wav` — Decoy drone engine loop
+- [ ] `sugar_pickup.wav` — Fictional white-sugar item collected
+- [ ] `sugar_boost.wav` — Sugar-powered temporary boost
+- [ ] `sugar_timer_tick.wav` — Addict countdown ticking
+- [ ] `sugar_timer_final_warning.wav` — Countdown last seconds warning
+- [ ] `sugar_saved_last_second.wav` — Emergency sugar save success
+- [ ] `ai_bullshit_sting.wav` — Ridiculous CarterWeb AI response
+- [ ] `cheat_shame_sting.wav` — Shame Shame Shame cheat achievement
+- [ ] `music_main_menu.ogg` — Main menu loop
+- [ ] `music_office_calm.ogg` — Calm creator work loop
+- [ ] `music_chase_loop.ogg` — Active chase loop
+- [ ] `music_end_run.ogg` — Victory/end-of-run theme

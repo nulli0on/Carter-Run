@@ -1,0 +1,5 @@
+{
+  "_readme": "Optional corrections. Use the exact names from office_lite.report.json and original FBX. Empty by default to avoid making incorrect texture guesses.",
+  "model_materials": {},
+  "material_textures": {}
+}

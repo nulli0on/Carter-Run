@@ -1,0 +1,21 @@
+[package]
+name = "run-carter"
+version = "1.0.2"
+edition = "2021"
+description = "RUN CARTER CarterOS, AmazonCrime arsenal, and updated 16-item armory (Rust + raylib)"
+
+[features]
+default = []
+steam = []
+
+[dependencies]
+raylib = { version = "6.0", features = ["SUPPORT_FILEFORMAT_JPG"] }
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+codegen-units = 1
+strip = true

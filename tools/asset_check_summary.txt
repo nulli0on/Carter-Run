@@ -1,0 +1,24 @@
+RUN CARTER OFFICE ASSET CONVERSION — INSPECTION SUMMARY
+
+Source FBX: office 3.fbx
+FBX version: 7400
+Source size: 128,012,140 bytes (122.08 MiB)
+
+Source contents:
+  Objects: 175 Model nodes, 165 Geometry meshes, 93 Materials,
+           53 Texture objects, 52 Video/image objects
+  Embedded video content: 48 nodes (duplicates may share a file)
+  FBX texture links to materials: 53
+  Objects lacking material link: 13 (some are lights/nulls, 13 Mesh models)
+
+Optimized GLB:
+  Geometry models: 147
+  Triangles: 218,564
+  Decodable embedded base color textures used: 38
+  High-poly models omitted in the light export: 18
+  One invalid embedded image: Logos.jpg
+  Size: approximately 9.15 MiB
+  Format validation: passed custom GLB parser AND trimesh re-import
+
+LIMITATION: GLB material restoration is partial; not a visual sign-off.
+No Rust compilation or game runtime was performed in this environment.

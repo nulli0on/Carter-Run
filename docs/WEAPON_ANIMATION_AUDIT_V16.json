@@ -1,0 +1,319 @@
+{
+  "weapons": [
+    {
+      "slot": 1,
+      "asset": "cardboard_blaster.glb",
+      "sha256": "85cb8d92b05dfa300f94ff7eacd8c6321229220bfcd57da72c9fdfdd5ab58dbe",
+      "bytes": 1428652,
+      "skins": 0,
+      "animation_clips": [
+        {
+          "name": "Animation",
+          "start_seconds": 0.0417,
+          "end_seconds": 3.75,
+          "channels": 5
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "asset": "knife.glb",
+      "sha256": "75db23c67db2ffc70e86475e7a64437eedf71adc600606a3a239a0b897581cde",
+      "bytes": 5548288,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "anims",
+          "start_seconds": 0.0,
+          "end_seconds": 4.8333,
+          "channels": 48
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "asset": "mark23.glb",
+      "sha256": "12ca9d37eb7044be77076df250728edaf731d121caed16c6f9c47969a7ccfa9f",
+      "bytes": 2293808,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "Reload",
+          "start_seconds": 0.0333,
+          "end_seconds": 3.7667,
+          "channels": 48
+        },
+        {
+          "name": "Shoot",
+          "start_seconds": 3.7667,
+          "end_seconds": 4.1,
+          "channels": 12
+        },
+        {
+          "name": "Hide",
+          "start_seconds": 4.1,
+          "end_seconds": 4.4667,
+          "channels": 11
+        },
+        {
+          "name": "Draw",
+          "start_seconds": 4.5,
+          "end_seconds": 5.3333,
+          "channels": 11
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "asset": "vector.glb",
+      "sha256": "e8e1060b1de28b5bfd34cb7663980be3febebdb9dabb7ad142621c3109192882",
+      "bytes": 2842892,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "Draw",
+          "start_seconds": 4.1667,
+          "end_seconds": 4.6667,
+          "channels": 12
+        },
+        {
+          "name": "Shoot",
+          "start_seconds": 3.3667,
+          "end_seconds": 3.5667,
+          "channels": 11
+        },
+        {
+          "name": "Reload",
+          "start_seconds": 0.0333,
+          "end_seconds": 3.3333,
+          "channels": 43
+        },
+        {
+          "name": "Hide",
+          "start_seconds": 3.6,
+          "end_seconds": 4.1333,
+          "channels": 12
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "asset": "m4.glb",
+      "sha256": "8839159fe724392a364518bf993def080eed5056ec65818d4afbee505a39f193",
+      "bytes": 6648772,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "Draw",
+          "start_seconds": 8.9667,
+          "end_seconds": 10.0,
+          "channels": 78
+        },
+        {
+          "name": "Reload",
+          "start_seconds": 0.0333,
+          "end_seconds": 3.6667,
+          "channels": 86
+        },
+        {
+          "name": "Fire",
+          "start_seconds": 7.5333,
+          "end_seconds": 8.3333,
+          "channels": 78
+        },
+        {
+          "name": "Reload_Empty",
+          "start_seconds": 3.7,
+          "end_seconds": 7.5,
+          "channels": 90
+        },
+        {
+          "name": "Holster",
+          "start_seconds": 8.3667,
+          "end_seconds": 8.9333,
+          "channels": 78
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "asset": "minigun.glb",
+      "sha256": "9ad41eadc7cc8dc128cceb7a1d021f7d099ceb2a0512753f2b3fc9b95afe500e",
+      "bytes": 8870624,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 6.0,
+          "channels": 94
+        }
+      ]
+    },
+    {
+      "slot": 7,
+      "asset": "flamethrower.glb",
+      "sha256": "d0d0c492278cd050a995528f55ca46bf6cbb6373c0b0bdf60bb9027d57451bf5",
+      "bytes": 7015932,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 6.5,
+          "channels": 73
+        }
+      ]
+    },
+    {
+      "slot": 8,
+      "asset": "rpg7.glb",
+      "sha256": "d728d6084213aa023042591d0e9e169be67e3d8ab6635210ec4a4e80a8377bcd",
+      "bytes": 6963248,
+      "skins": 0,
+      "animation_clips": []
+    },
+    {
+      "slot": 9,
+      "asset": "grenade.glb",
+      "sha256": "5209eee0452e8a872b072ee9f32fdf629ddfe0ebd9dad4729dab68c638aff51c",
+      "bytes": 4673216,
+      "skins": 0,
+      "animation_clips": []
+    },
+    {
+      "slot": 10,
+      "asset": "dynamite.glb",
+      "sha256": "96ce4e3003fb5f63c6ef00356de2cc0f193178fbc625b801f15ea30f02babd95",
+      "bytes": 1877228,
+      "skins": 0,
+      "animation_clips": []
+    },
+    {
+      "slot": 11,
+      "asset": "shotgun.glb",
+      "sha256": "9e93830e00d408e4daef8a708b26b924d5678957480099063a0a9041d75ad4f7",
+      "bytes": 8503144,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 5.9667,
+          "channels": 65
+        }
+      ]
+    },
+    {
+      "slot": 12,
+      "asset": "sniper.glb",
+      "sha256": "bd816bccb818a6f25851631ea781e0dc84f7b903b49b6cb053889cc0d1ad799a",
+      "bytes": 8675360,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 6.5,
+          "channels": 78
+        }
+      ]
+    },
+    {
+      "slot": 13,
+      "asset": "persuader.glb",
+      "sha256": "8e6b34c5e97a8e7ac5c15d7cec8164f48006286971363a0bf3da05474e4b103a",
+      "bytes": 10076364,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 7.7333,
+          "channels": 73
+        }
+      ]
+    },
+    {
+      "slot": 14,
+      "asset": "lmg.glb",
+      "sha256": "7f84ae3cbaf69ce4caa5894ee62f5af2a4de1d5ee42b31ff7484ff9e770972e9",
+      "bytes": 10626104,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 15.5667,
+          "channels": 127
+        }
+      ]
+    },
+    {
+      "slot": 15,
+      "asset": "grenadelauncher.glb",
+      "sha256": "d94aac4a1d2ccf6cc1a2b7e33d3afd453a8fbe410d530ba0b57faadb4a59c013",
+      "bytes": 8289848,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "allanims",
+          "start_seconds": 0.0,
+          "end_seconds": 6.0,
+          "channels": 78
+        }
+      ]
+    },
+    {
+      "slot": 16,
+      "asset": "pistol.glb",
+      "sha256": "1ae2718c5caa5a944ad6e604cfc0f609cf26dd9fb50e8d12e25c10a899b39c58",
+      "bytes": 8213096,
+      "skins": 1,
+      "animation_clips": [
+        {
+          "name": "Armature|EmptyClipReload",
+          "start_seconds": 0.0,
+          "end_seconds": 1.6167,
+          "channels": 133
+        },
+        {
+          "name": "Armature|Fire",
+          "start_seconds": 0.0,
+          "end_seconds": 0.4167,
+          "channels": 132
+        },
+        {
+          "name": "Armature|Hide",
+          "start_seconds": 0.0,
+          "end_seconds": 0.3333,
+          "channels": 131
+        },
+        {
+          "name": "Armature|Idle",
+          "start_seconds": 0.0,
+          "end_seconds": 1.3333,
+          "channels": 130
+        },
+        {
+          "name": "Armature|ReloadClip",
+          "start_seconds": 0.0,
+          "end_seconds": 1.1333,
+          "channels": 133
+        },
+        {
+          "name": "Armature|Unhide",
+          "start_seconds": 0.0,
+          "end_seconds": 0.2833,
+          "channels": 131
+        },
+        {
+          "name": "Armature|Weild",
+          "start_seconds": 0.0,
+          "end_seconds": 1.0333,
+          "channels": 133
+        }
+      ]
+    }
+  ]
+}
