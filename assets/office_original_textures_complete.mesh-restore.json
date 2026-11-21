@@ -1,0 +1,88 @@
+{
+  "source": "meshes from user-uploaded office 3.fbx, simplified with deterministic spatial clustering",
+  "added_source_objects": [
+    {
+      "name": "CUSHION",
+      "source_triangles": 9152,
+      "game_triangles": 2888,
+      "voxel_metres": 0.035
+    },
+    {
+      "name": "pillow",
+      "source_triangles": 33792,
+      "game_triangles": 957,
+      "voxel_metres": 0.036
+    },
+    {
+      "name": "pillow.001",
+      "source_triangles": 33792,
+      "game_triangles": 549,
+      "voxel_metres": 0.036
+    },
+    {
+      "name": "bottom frame",
+      "source_triangles": 21416,
+      "game_triangles": 747,
+      "voxel_metres": 0.018
+    },
+    {
+      "name": "leggy",
+      "source_triangles": 33528,
+      "game_triangles": 944,
+      "voxel_metres": 0.018
+    },
+    {
+      "name": "metal frame",
+      "source_triangles": 105728,
+      "game_triangles": 3962,
+      "voxel_metres": 0.015
+    },
+    {
+      "name": "leather",
+      "source_triangles": 52688,
+      "game_triangles": 3679,
+      "voxel_metres": 0.028
+    },
+    {
+      "name": "BabyBreaths_01a.001",
+      "source_triangles": 35202,
+      "game_triangles": 5410,
+      "voxel_metres": 0.027
+    },
+    {
+      "name": "Gum_branch_01",
+      "source_triangles": 39898,
+      "game_triangles": 741,
+      "voxel_metres": 0.025
+    },
+    {
+      "name": "Gum_branch_02",
+      "source_triangles": 71560,
+      "game_triangles": 1626,
+      "voxel_metres": 0.025
+    },
+    {
+      "name": "Keyboard",
+      "source_triangles": 15481,
+      "game_triangles": 2820,
+      "voxel_metres": 0.008
+    },
+    {
+      "name": "Mug",
+      "source_triangles": 24080,
+      "game_triangles": 3780,
+      "voxel_metres": 0.005
+    },
+    {
+      "name": "mug content",
+      "source_triangles": 9728,
+      "game_triangles": 1471,
+      "voxel_metres": 0.005
+    }
+  ],
+  "high_detail_budget": 220000,
+  "warnings": [],
+  "size_mib": 11.6,
+  "original_triangles_added": 486045,
+  "decimated_triangles_added": 29574
+}

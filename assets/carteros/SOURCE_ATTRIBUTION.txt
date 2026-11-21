@@ -1,0 +1,1 @@
+Exact Figma SVG layer exports from user-supplied Ohne Namen.svg, exported 2026-11-19. No visual redesign. PNGs retain pixels at 1:1 for 1440x900 Figma artboards. Source: /mnt/data/Ohne Namen.svg.

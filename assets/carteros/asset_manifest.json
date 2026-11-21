@@ -1,0 +1,170 @@
+{
+  "boot_screen": {
+    "figma_frame": 12,
+    "file": "boot_screen.png",
+    "height": 900,
+    "width": 1440,
+    "x": 0,
+    "y": 0
+  },
+  "cartermail_window": {
+    "figma_frame": 10,
+    "file": "cartermail_window.png",
+    "height": 591,
+    "width": 852,
+    "x": 480,
+    "y": 232
+  },
+  "carterweb_inactive": {
+    "figma_frame": 10,
+    "file": "carterweb_inactive.png",
+    "height": 584,
+    "width": 938,
+    "x": 89,
+    "y": 84
+  },
+  "context_menu": {
+    "figma_frame": 3,
+    "file": "context_menu.png",
+    "height": 326,
+    "width": 328,
+    "x": 511,
+    "y": 321
+  },
+  "desktop_bg": {
+    "figma_frame": 1,
+    "file": "desktop_bg.png",
+    "height": 900,
+    "width": 1440,
+    "x": 0,
+    "y": 0
+  },
+  "desktop_widgets": {
+    "figma_frame": 1,
+    "file": "desktop_widgets.png",
+    "height": 635,
+    "width": 1358,
+    "x": 22,
+    "y": 57
+  },
+  "dock": {
+    "figma_frame": 1,
+    "file": "dock.png",
+    "height": 114,
+    "width": 926,
+    "x": 257,
+    "y": 786
+  },
+  "files_window": {
+    "figma_frame": 4,
+    "file": "files_window.png",
+    "height": 742,
+    "width": 1222,
+    "x": 109,
+    "y": 89
+  },
+  "launchpad": {
+    "figma_frame": 2,
+    "file": "launchpad.png",
+    "height": 900,
+    "width": 1440,
+    "x": 0,
+    "y": 0
+  },
+  "leak_banner": {
+    "figma_frame": 14,
+    "file": "leak_banner.png",
+    "height": 62,
+    "width": 1392,
+    "x": 24,
+    "y": 58
+  },
+  "leak_bg": {
+    "figma_frame": 14,
+    "file": "leak_bg.png",
+    "height": 900,
+    "width": 1440,
+    "x": 0,
+    "y": 0
+  },
+  "leak_modal": {
+    "figma_frame": 14,
+    "file": "leak_modal.png",
+    "height": 522,
+    "width": 684,
+    "x": 378,
+    "y": 198
+  },
+  "leak_radar": {
+    "figma_frame": 14,
+    "file": "leak_radar.png",
+    "height": 125,
+    "width": 383,
+    "x": 1023,
+    "y": 656
+  },
+  "lock_screen": {
+    "figma_frame": 11,
+    "file": "lock_screen.png",
+    "height": 900,
+    "width": 1440,
+    "x": 0,
+    "y": 0
+  },
+  "menu_bar": {
+    "figma_frame": 1,
+    "file": "menu_bar.png",
+    "height": 34,
+    "width": 1440,
+    "x": 0,
+    "y": 0
+  },
+  "notification_center": {
+    "figma_frame": 3,
+    "file": "notification_center.png",
+    "height": 803,
+    "width": 450,
+    "x": 990,
+    "y": 28
+  },
+  "settings_display": {
+    "figma_frame": 5,
+    "file": "settings_display.png",
+    "height": 762,
+    "width": 1056,
+    "x": 192,
+    "y": 73
+  },
+  "settings_network": {
+    "figma_frame": 7,
+    "file": "settings_network.png",
+    "height": 762,
+    "width": 1056,
+    "x": 192,
+    "y": 73
+  },
+  "settings_personalization": {
+    "figma_frame": 9,
+    "file": "settings_personalization.png",
+    "height": 762,
+    "width": 1056,
+    "x": 192,
+    "y": 73
+  },
+  "settings_privacy": {
+    "figma_frame": 8,
+    "file": "settings_privacy.png",
+    "height": 762,
+    "width": 1056,
+    "x": 192,
+    "y": 73
+  },
+  "settings_sound": {
+    "figma_frame": 6,
+    "file": "settings_sound.png",
+    "height": 762,
+    "width": 1056,
+    "x": 192,
+    "y": 73
+  }
+}

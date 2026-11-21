@@ -1,0 +1,1120 @@
+{
+  "schema": 1,
+  "project": "RUN CARTER",
+  "total_planned": 100,
+  "counts": {
+    "supplied_original": 25,
+    "candidate_review": 5,
+    "missing": 70,
+    "unique_uploaded_mp3": 34,
+    "new_unique_mp3": 9
+  },
+  "recordings": [
+    {
+      "filename": "freesound_community-handgun-clip-out-106437.mp3",
+      "sha256": "843d40599c42e27f44478b2e830addba12be073d8ea36aa4a3ffbd5977324d3b",
+      "bytes": 25440,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "dragon-studio-explosion-with-debris-494320.mp3",
+      "sha256": "3ee1f2385b1c86c6d9f080ee51d9f2a9afde40f2b54c9cd84eedf2b8dcd68d1f",
+      "bytes": 92928,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "universfield-opening-metal-door-199581.mp3",
+      "sha256": "2d6b9147dee91507cd9e6f06090b5e46fceefec80e7271563ec7f1571fa0dfe8",
+      "bytes": 46811,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "vadim_makes_sound-achievement-badge-pop-sound-3-547866.mp3",
+      "sha256": "0b7ec7b38d40f30d29abb0b4a94e071f2937522cfaf2cd453fb958d4a876a101",
+      "bytes": 47616,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-police-357-pistol-unholster-48003.mp3",
+      "sha256": "fce5b6a932a4d4ce1d94bde6caf52ed0f3f0c6fc31bfb326003af446525678ca",
+      "bytes": 30240,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "freesound_community-start-computeraif-14572.mp3",
+      "sha256": "516a6faaaf49d17fbf859b692608fcfb21d502375986ea6162b6fd1c2a27483e",
+      "bytes": 108480,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "universfield-intense-door-knocking-637240.mp3",
+      "sha256": "13a9d9581f3de3cd9935aa59c0a9df56802123623be6e02b0cfbe08043e47e3f",
+      "bytes": 66037,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-flinch-for-fight-1-27368.mp3",
+      "sha256": "8befd5666bb91bbc8268169b1bd276c6b160223abf1fb0bcee3f2621ffdd53ca",
+      "bytes": 689632,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "oxidvideos-weapon-cocking-618522 2.mp3",
+      "sha256": "228d5ff5b6aed22b7ef859574d49437e54ef2ddc895c30c855d767b5180c570b",
+      "bytes": 38400,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "freesound_community-taking-pills-33981.mp3",
+      "sha256": "dfd1611aab552d17252af8217c99801a857bac6f090c92e86db8a58ec2ff1daf",
+      "bytes": 763680,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "freesound_community-keyboard-typing-5997.mp3",
+      "sha256": "ac74e5a22d87e2617f5545d29d605774e4ddaca6de4551e61d004d3c0be80054",
+      "bytes": 312000,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "universfield-computer-mouse-click-352734.mp3",
+      "sha256": "64d9331804512e308f52ecbac75e0124b79b6ed46144ec740d9b6129a7880156",
+      "bytes": 20736,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "u_r7cny11q7r-man-death-scream-186763.mp3",
+      "sha256": "22b8ed36e6f6f3629fd5bb3040e6a0c5cd9129cfca569bf142a57cba6496871d",
+      "bytes": 106997,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "universfield-welcome-notification-131917.mp3",
+      "sha256": "02478308a98e2ea8ee272b1e2c45fb0f5932fd61b5a861a2372f2317fc197ac3",
+      "bytes": 101146,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "universfield-achievement-unlock-243762.mp3",
+      "sha256": "27b6d3777779c1af386d67212ae974cbf5dd6c9082aa8d47beaefc3cef1d1bc1",
+      "bytes": 141312,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "soumages-walking-on-wood-363349.mp3",
+      "sha256": "352d15f3fdc68d5e74ad4a0345f3233ae4d4268213212ac16511e01987590cbc",
+      "bytes": 67709,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "dragon-studio-machine-gun-sfx-631486.mp3",
+      "sha256": "353e9571ae185dcf078ccb8ffbc0df5842742e83b93eb0c8fd1b30682979bee8",
+      "bytes": 129567,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-m4-assault-rifle-long-burst-102682.mp3",
+      "sha256": "a30c99136efa1a7daaace5c6b4be32ba58bc27e0be030b40fdea36ae6dbcb312",
+      "bytes": 77760,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-item-pickup-37089.mp3",
+      "sha256": "bab708cf7ceb3be73382af2826683bcaa5f0ac91a84be9947fc27d47fa8de78a",
+      "bytes": 10560,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "universfield-new-notification-010-352755.mp3",
+      "sha256": "5be19a030c39e9fef9084d247e1bda23cb947e9e430abfc2e97376e04ff868b3",
+      "bytes": 40704,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "virtualzero-mechanical-keyboard-typing-hd-372290.mp3",
+      "sha256": "26a363c381c321990f013f3037a63d189526ed2ec697a2c44f27c71014784417",
+      "bytes": 257462,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "dragon-studio-gunshot-511311.mp3",
+      "sha256": "500d6ec7ffa371ba4b379834b3314f8c7380b55d602b0fcc0dd3509a55b45692",
+      "bytes": 71424,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "dragon-studio-gun-reload-2-511308.mp3",
+      "sha256": "c1acdf3043f54f3d828674f071ae23031c7d837e64cfdde3e5beda41f46e3943",
+      "bytes": 48384,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-gun-holster-44888.mp3",
+      "sha256": "e2682739e505bcc3017abe76bbe32650559d0031fbc3d05e4d556c211abe08a7",
+      "bytes": 45600,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "freesound_community-pistol-draw-unholster-80799.mp3",
+      "sha256": "3277631ca628de0408a32de9792c4cbf7815d37c94d29cbb62c3d391154be53b",
+      "bytes": 23520,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "freesound_community-school-104993.mp3",
+      "sha256": "0951b37b21d2aef3296ea6a9241b789604be3779dc5034486f6ba71220cda063",
+      "bytes": 168480,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-088436_hurt-1-82785.mp3",
+      "sha256": "be46486937958fea99178b2e7cd72e0245324bba2117e54812b6ff13abb31781",
+      "bytes": 14400,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-pounding-on-door-44023.mp3",
+      "sha256": "658a456f464437986240a9d3225e08e3840e8af5f59f5be28df16368c8a0ea1e",
+      "bytes": 53760,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-holster-pistol-7132.mp3",
+      "sha256": "264fee17a648bd5c71a7df24f66c0b7646c15279130a3349cb59acc94c8b4413",
+      "bytes": 30720,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "eaglaxle-riffle-shot-1-530811.mp3",
+      "sha256": "64c38db633f12c46465a6fbbd06089c5a70971b990746b0be855d472fd07d057",
+      "bytes": 51456,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "soundshelfstudio-ui-swipe-confirm-522221.mp3",
+      "sha256": "24a51fc333e07f4472b6024c307e93351dba9f8883e23d8b3017819d6eee7ec8",
+      "bytes": 54334,
+      "new_in_latest_upload": true
+    },
+    {
+      "filename": "freesound_community-oof-97698.mp3",
+      "sha256": "11a39ab69223ccaad3a661a0baceda85a8b1d12f92b283907884b8852ab89fa0",
+      "bytes": 33600,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "freesound_community-086819_hurt-2-82784.mp3",
+      "sha256": "cb908ddd3f854676a99e46981a2ccecdcf321deb22ad747d8e184857a7f39bc4",
+      "bytes": 18720,
+      "new_in_latest_upload": false
+    },
+    {
+      "filename": "creatorshome-draw-a-sword-327726.mp3",
+      "sha256": "d1f38f643d1cfb0ed76b8074e757d55d333d7026708ea5f967069535a2942677",
+      "bytes": 77568,
+      "new_in_latest_upload": true
+    }
+  ],
+  "cues": [
+    {
+      "number": 1,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-item-pickup-37089.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-item-pickup-37089.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 2,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-school-104993.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-school-104993.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 3,
+      "category": "Already uploaded (candidate)",
+      "cue": "universfield-opening-metal-door-199581.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "universfield-opening-metal-door-199581.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 4,
+      "category": "Already uploaded (candidate)",
+      "cue": "universfield-intense-door-knocking-637240.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "universfield-intense-door-knocking-637240.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 5,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-keyboard-typing-5997.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-keyboard-typing-5997.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 6,
+      "category": "Already uploaded (candidate)",
+      "cue": "virtualzero-mechanical-keyboard-typing-hd-372290.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "virtualzero-mechanical-keyboard-typing-hd-372290.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 7,
+      "category": "Already uploaded (candidate)",
+      "cue": "universfield-new-notification-010-352755.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "universfield-new-notification-010-352755.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 8,
+      "category": "Already uploaded (candidate)",
+      "cue": "universfield-welcome-notification-131917.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "universfield-welcome-notification-131917.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 9,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-start-computeraif-14572.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-start-computeraif-14572.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 10,
+      "category": "Already uploaded (candidate)",
+      "cue": "universfield-computer-mouse-click-352734.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "universfield-computer-mouse-click-352734.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 11,
+      "category": "Already uploaded (candidate)",
+      "cue": "soumages-walking-on-wood-363349.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "soumages-walking-on-wood-363349.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 12,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-pounding-on-door-44023.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-pounding-on-door-44023.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 13,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-flinch-for-fight-1-27368.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-flinch-for-fight-1-27368.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 14,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-088436_hurt-1-82785.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-088436_hurt-1-82785.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 15,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-086819_hurt-2-82784.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-086819_hurt-2-82784.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 16,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-oof-97698.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-oof-97698.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 17,
+      "category": "Already uploaded (candidate)",
+      "cue": "u_r7cny11q7r-man-death-scream-186763.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "u_r7cny11q7r-man-death-scream-186763.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 18,
+      "category": "Already uploaded (candidate)",
+      "cue": "vadim_makes_sound-achievement-badge-pop-sound-3-547866.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "vadim_makes_sound-achievement-badge-pop-sound-3-547866.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 19,
+      "category": "Already uploaded (candidate)",
+      "cue": "universfield-achievement-unlock-243762.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "universfield-achievement-unlock-243762.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 20,
+      "category": "Already uploaded (candidate)",
+      "cue": "freesound_community-m4-assault-rifle-long-burst-102682.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "freesound_community-m4-assault-rifle-long-burst-102682.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 21,
+      "category": "Already uploaded (candidate)",
+      "cue": "eaglaxle-riffle-shot-1-530811.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "eaglaxle-riffle-shot-1-530811.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 22,
+      "category": "Already uploaded (candidate)",
+      "cue": "dragon-studio-gun-reload-2-511308.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "dragon-studio-gun-reload-2-511308.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 23,
+      "category": "Already uploaded (candidate)",
+      "cue": "dragon-studio-gunshot-511311.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "dragon-studio-gunshot-511311.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 24,
+      "category": "Already uploaded (candidate)",
+      "cue": "dragon-studio-machine-gun-sfx-631486.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "dragon-studio-machine-gun-sfx-631486.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 25,
+      "category": "Already uploaded (candidate)",
+      "cue": "dragon-studio-explosion-with-debris-494320.mp3",
+      "trigger": "Existing recording; assign by ear",
+      "status": "SUPPLIED_ORIGINAL",
+      "source_file": "dragon-studio-explosion-with-debris-494320.mp3",
+      "notes": "Present by SHA-256; suitability and license still need review"
+    },
+    {
+      "number": 26,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "os_shutdown.wav",
+      "trigger": "CarterOS shutdown",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 27,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "os_lock.wav",
+      "trigger": "Locking the workstation",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 28,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "os_unlock.wav",
+      "trigger": "Unlocking the workstation",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 29,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "ui_window_open.wav",
+      "trigger": "Opening a window",
+      "status": "CANDIDATE_REVIEW",
+      "source_file": "soundshelfstudio-ui-swipe-confirm-522221.mp3",
+      "notes": "Plausible match by filename only; listen before assignment"
+    },
+    {
+      "number": 30,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "ui_window_close.wav",
+      "trigger": "Closing a window",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 31,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "ui_error.wav",
+      "trigger": "System error or failed action",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 32,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "ui_critical_alarm.wav",
+      "trigger": "Location leaked critical alarm",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 33,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "mail_send.wav",
+      "trigger": "Sending an email",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 34,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "mail_receive.wav",
+      "trigger": "Incoming CarterMail message",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 35,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "web_search_submit.wav",
+      "trigger": "Submitting a search",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 36,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "shop_purchase.wav",
+      "trigger": "Successful AmazonCrime purchase",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 37,
+      "category": "CarterOS / Mail / Web / Store",
+      "cue": "shop_payment_denied.wav",
+      "trigger": "Not enough money",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 38,
+      "category": "Player / Office",
+      "cue": "footsteps_run_wood.wav",
+      "trigger": "Running on wooden floor",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 39,
+      "category": "Player / Office",
+      "cue": "footsteps_carpet.wav",
+      "trigger": "Walking on carpet",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 40,
+      "category": "Player / Office",
+      "cue": "player_jump.wav",
+      "trigger": "Player jumping",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 41,
+      "category": "Player / Office",
+      "cue": "player_land.wav",
+      "trigger": "Landing after jump",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 42,
+      "category": "Player / Office",
+      "cue": "player_breath_panicked.wav",
+      "trigger": "Panic breathing during chase",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 43,
+      "category": "Player / Office",
+      "cue": "door_close.wav",
+      "trigger": "Closing a door",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 44,
+      "category": "Player / Office",
+      "cue": "door_slam.wav",
+      "trigger": "Door slamming",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 45,
+      "category": "Player / Office",
+      "cue": "door_lock.wav",
+      "trigger": "Locking a door",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 46,
+      "category": "Player / Office",
+      "cue": "door_unlock.wav",
+      "trigger": "Unlocking a door",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 47,
+      "category": "Player / Office",
+      "cue": "office_room_tone.wav",
+      "trigger": "Quiet office ambience loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 48,
+      "category": "Player / Office",
+      "cue": "office_item_drop.wav",
+      "trigger": "Dropping a physical item",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 49,
+      "category": "Kids / Waves",
+      "cue": "crowd_distant.wav",
+      "trigger": "Kids gathering in distance",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 50,
+      "category": "Kids / Waves",
+      "cue": "crowd_approach.wav",
+      "trigger": "Approaching crowd grows louder",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 51,
+      "category": "Kids / Waves",
+      "cue": "kid_free_pc_shout_01.wav",
+      "trigger": "Kid voice: Can I have a free PC?",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 52,
+      "category": "Kids / Waves",
+      "cue": "kid_free_pc_shout_02.wav",
+      "trigger": "Different impatient kid shout",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 53,
+      "category": "Kids / Waves",
+      "cue": "kids_wall_bang.wav",
+      "trigger": "Children hitting the walls",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 54,
+      "category": "Kids / Waves",
+      "cue": "kids_door_kick.wav",
+      "trigger": "Children kicking a door",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 55,
+      "category": "Kids / Waves",
+      "cue": "kids_run_footsteps.wav",
+      "trigger": "Several kids running",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 56,
+      "category": "Kids / Waves",
+      "cue": "kid_repelled.wav",
+      "trigger": "Fan knocked back or distracted",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 57,
+      "category": "Kids / Waves",
+      "cue": "kid_hits_player.wav",
+      "trigger": "Enemy contact with player",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 58,
+      "category": "Kids / Waves",
+      "cue": "wave_start_stinger.wav",
+      "trigger": "Wave starts",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 59,
+      "category": "Kids / Waves",
+      "cue": "wave_complete_stinger.wav",
+      "trigger": "Wave successfully survived",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 60,
+      "category": "General weapon handling",
+      "cue": "weapon_switch.wav",
+      "trigger": "Scrolling/changing weapon",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 61,
+      "category": "General weapon handling",
+      "cue": "weapon_draw.wav",
+      "trigger": "Equipping weapon in hands",
+      "status": "CANDIDATE_REVIEW",
+      "source_file": "freesound_community-pistol-draw-unholster-80799.mp3",
+      "notes": "Plausible match by filename only; listen before assignment"
+    },
+    {
+      "number": 62,
+      "category": "General weapon handling",
+      "cue": "weapon_holster.wav",
+      "trigger": "Putting weapon away",
+      "status": "CANDIDATE_REVIEW",
+      "source_file": "freesound_community-gun-holster-44888.mp3",
+      "notes": "Plausible match by filename only; listen before assignment"
+    },
+    {
+      "number": 63,
+      "category": "General weapon handling",
+      "cue": "weapon_mag_out.wav",
+      "trigger": "Removing magazine",
+      "status": "CANDIDATE_REVIEW",
+      "source_file": "freesound_community-handgun-clip-out-106437.mp3",
+      "notes": "Plausible match by filename only; listen before assignment"
+    },
+    {
+      "number": 64,
+      "category": "General weapon handling",
+      "cue": "weapon_mag_in.wav",
+      "trigger": "Inserting magazine",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 65,
+      "category": "General weapon handling",
+      "cue": "weapon_bolt_chamber.wav",
+      "trigger": "Chambering round or racking bolt",
+      "status": "CANDIDATE_REVIEW",
+      "source_file": "oxidvideos-weapon-cocking-618522 2.mp3",
+      "notes": "Plausible match by filename only; listen before assignment"
+    },
+    {
+      "number": 66,
+      "category": "General weapon handling",
+      "cue": "weapon_dry_fire.wav",
+      "trigger": "Trying to fire empty weapon",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 67,
+      "category": "General weapon handling",
+      "cue": "weapon_ammo_pickup.wav",
+      "trigger": "Picking up ammunition",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 68,
+      "category": "General weapon handling",
+      "cue": "weapon_impact_wood.wav",
+      "trigger": "Projectile impact on wood",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 69,
+      "category": "General weapon handling",
+      "cue": "weapon_impact_metal.wav",
+      "trigger": "Projectile impact on metal",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 70,
+      "category": "Specific weapon effects",
+      "cue": "vector_fire_loop.wav",
+      "trigger": "Kriss Vector burst/loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 71,
+      "category": "Specific weapon effects",
+      "cue": "dynamite_fuse.wav",
+      "trigger": "Lit dynamite fuse",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 72,
+      "category": "Specific weapon effects",
+      "cue": "minigun_spin_up.wav",
+      "trigger": "Minigun motor starting",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 73,
+      "category": "Specific weapon effects",
+      "cue": "minigun_spin_down.wav",
+      "trigger": "Minigun motor stopping",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 74,
+      "category": "Specific weapon effects",
+      "cue": "flamethrower_ignite.wav",
+      "trigger": "Flamethrower ignition",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 75,
+      "category": "Specific weapon effects",
+      "cue": "flamethrower_loop.wav",
+      "trigger": "Flamethrower burning loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 76,
+      "category": "Specific weapon effects",
+      "cue": "flamethrower_stop.wav",
+      "trigger": "Flamethrower fuel shuts off",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 77,
+      "category": "Specific weapon effects",
+      "cue": "rpg_launch.wav",
+      "trigger": "RPG projectile launches",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 78,
+      "category": "Specific weapon effects",
+      "cue": "rpg_rocket_flight.wav",
+      "trigger": "Flying RPG rocket",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 79,
+      "category": "Specific weapon effects",
+      "cue": "knife_swing.wav",
+      "trigger": "Knife swing through air",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 80,
+      "category": "Specific weapon effects",
+      "cue": "grenade_pin_pull.wav",
+      "trigger": "Pulling grenade pin",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 81,
+      "category": "Specific weapon effects",
+      "cue": "cardboard_gun_pop.wav",
+      "trigger": "Comically weak cardboard-gun fire",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 82,
+      "category": "Deliveries / gadgets",
+      "cue": "delivery_doorbell.wav",
+      "trigger": "AmazonCrime courier arrival",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 83,
+      "category": "Deliveries / gadgets",
+      "cue": "delivery_box_set_down.wav",
+      "trigger": "Delivery box lands outside",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 84,
+      "category": "Deliveries / gadgets",
+      "cue": "package_open.wav",
+      "trigger": "Opening purchased package",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 85,
+      "category": "Deliveries / gadgets",
+      "cue": "weapon_crate_open.wav",
+      "trigger": "Opening armory crate",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 86,
+      "category": "Deliveries / gadgets",
+      "cue": "raspberry_pi_decoy_beep.wav",
+      "trigger": "Raspberry Pi distraction activated",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 87,
+      "category": "Deliveries / gadgets",
+      "cue": "airhorn.wav",
+      "trigger": "Airhorn gadget fired",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 88,
+      "category": "Deliveries / gadgets",
+      "cue": "confetti_cannon.wav",
+      "trigger": "Confetti cannon blast",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 89,
+      "category": "Deliveries / gadgets",
+      "cue": "drone_motor.wav",
+      "trigger": "Decoy drone engine loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 90,
+      "category": "Sugar / AI / achievements",
+      "cue": "sugar_pickup.wav",
+      "trigger": "Fictional white-sugar item collected",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 91,
+      "category": "Sugar / AI / achievements",
+      "cue": "sugar_boost.wav",
+      "trigger": "Sugar-powered temporary boost",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 92,
+      "category": "Sugar / AI / achievements",
+      "cue": "sugar_timer_tick.wav",
+      "trigger": "Addict countdown ticking",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 93,
+      "category": "Sugar / AI / achievements",
+      "cue": "sugar_timer_final_warning.wav",
+      "trigger": "Countdown last seconds warning",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 94,
+      "category": "Sugar / AI / achievements",
+      "cue": "sugar_saved_last_second.wav",
+      "trigger": "Emergency sugar save success",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 95,
+      "category": "Sugar / AI / achievements",
+      "cue": "ai_bullshit_sting.wav",
+      "trigger": "Ridiculous CarterWeb AI response",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 96,
+      "category": "Sugar / AI / achievements",
+      "cue": "cheat_shame_sting.wav",
+      "trigger": "Shame Shame Shame cheat achievement",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 97,
+      "category": "Music",
+      "cue": "music_main_menu.ogg",
+      "trigger": "Main menu loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 98,
+      "category": "Music",
+      "cue": "music_office_calm.ogg",
+      "trigger": "Calm creator work loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 99,
+      "category": "Music",
+      "cue": "music_chase_loop.ogg",
+      "trigger": "Active chase loop",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    },
+    {
+      "number": 100,
+      "category": "Music",
+      "cue": "music_end_run.ogg",
+      "trigger": "Victory/end-of-run theme",
+      "status": "MISSING",
+      "source_file": "",
+      "notes": "Not found as an exact cue in uploaded sources"
+    }
+  ]
+}
