@@ -1,0 +1,4 @@
+The five WAV clips read original RUN CARTER dialogue through
+CMU Flite's US English rms, slt, and awb synthetic voices.
+They are generated audio assets. The game plays the WAV files directly.
+Generator and voice project: https://github.com/festvox/flite

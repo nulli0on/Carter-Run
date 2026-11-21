@@ -1,0 +1,134 @@
+{
+  "source": "user-supplied TEXTURE.rar + office 3.fbx",
+  "source_glb": "/mnt/data/run-carter-starter/assets/office_repaired.glb",
+  "materials_with_source_color_textures": {
+    "plywood": "PLywood/plywood_diff_2k.jpg",
+    "plywood 1": "PLywood/plywood_diff_2k.jpg",
+    "plywood 2": "PLywood/plywood_diff_2k.jpg",
+    "wod floring": "planks/Planks009_2K_Color.png",
+    "photos": "3806.png",
+    "display": "mpm_F18_desktop_diff.JPG",
+    "Material": "Backdrop008_4K_Color.png",
+    "CUSHION": "36 fabric/Fabric036_2K_Color.png",
+    "pillow 1": "36 fabric/Fabric036_2K_Color.png"
+  },
+  "material_color_fixes": {
+    "white wall": [
+      0.84,
+      0.81,
+      0.78
+    ],
+    "Door_material": [
+      0.87,
+      0.86,
+      0.83
+    ],
+    "hidden_material": [
+      0.85,
+      0.83,
+      0.8
+    ],
+    "PVC": [
+      0.13,
+      0.14,
+      0.14
+    ],
+    "Plastic": [
+      0.11,
+      0.12,
+      0.12
+    ],
+    "Marble": [
+      0.82,
+      0.8,
+      0.78
+    ],
+    "Glass": [
+      0.92,
+      0.95,
+      0.96
+    ],
+    "pillow 2": [
+      0.88,
+      0.79,
+      0.14
+    ],
+    "glass": [
+      0.94,
+      0.96,
+      0.98
+    ],
+    "display frame": [
+      0.06,
+      0.07,
+      0.08
+    ],
+    "glass frame": [
+      0.045,
+      0.05,
+      0.06
+    ],
+    "box": [
+      0.045,
+      0.045,
+      0.04
+    ]
+  },
+  "planar_projection_meshes": [
+    {
+      "mesh": "photoframe",
+      "material": "photos",
+      "axis_extent": [
+        0.09339439868927002,
+        0.32073289155960083,
+        0.2773739695549011
+      ]
+    },
+    {
+      "mesh": "Apple iMac 27 - display",
+      "material": "display",
+      "axis_extent": [
+        0.06478852033615112,
+        0.33407968282699585,
+        0.6016613245010376
+      ]
+    },
+    {
+      "mesh": "Plane",
+      "material": "photos",
+      "axis_extent": [
+        0.10216641426086426,
+        0.17096590995788574,
+        0.06766466051340103
+      ]
+    },
+    {
+      "mesh": "Plane.001",
+      "material": "photos",
+      "axis_extent": [
+        0.10216641426086426,
+        0.1709657907485962,
+        0.06766468286514282
+      ]
+    },
+    {
+      "mesh": "background",
+      "material": "Material",
+      "axis_extent": [
+        6.571107864379883,
+        3.2594375610351562,
+        1.8339624404907227
+      ]
+    }
+  ],
+  "notes": [
+    "The original pack has the exact diffuse maps for floor, plywood, computer desktop, backdrop, and more, but its material node tree was not supplied. Matches on material names/geometry are manually reconstructed.",
+    "Geometry inherited from optimized v0.2 GLB, so 18 over-budget models including the chair are not yet in this variant."
+  ],
+  "removed_helper_mesh_nodes": [
+    "CTRL_Baseboard.001",
+    "CTRL_Hole",
+    "CTRL_Hole.002"
+  ],
+  "size_mib": 10.77
+}
