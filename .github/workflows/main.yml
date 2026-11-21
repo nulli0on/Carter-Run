@@ -1,3 +1,4 @@
+
 name: Extract ZIP files
 
 on:
@@ -17,89 +18,154 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Find and extract ZIP files
+      - name: Extract ZIP files into repository root
         shell: bash
         run: |
           set -euo pipefail
 
-          found_zip=false
+          python3 - <<'PY'
+          import os
+          import shutil
+          import stat
+          import subprocess
+          import zipfile
+          from pathlib import Path, PurePosixPath
 
-          while IFS= read -r -d '' zip_file; do
-            found_zip=true
+          root = Path.cwd()
 
-            echo "Processing: $zip_file"
-
-            temp_dir="$(mktemp -d)"
-            extract_dir="$temp_dir/extracted"
-            mkdir -p "$extract_dir"
-
-            unzip -q -o "$zip_file" -d "$extract_dir"
-
-            current_dir="$extract_dir"
-
-            # Remove unnecessary wrapper folders.
-            #
-            # Example:
-            # Folder1/Folder2/File1.txt
-            # Folder1/Folder2/File2.txt
-            # Folder1/Folder2/Folder3/
-            #
-            # Becomes:
-            # File1.txt
-            # File2.txt
-            # Folder3/
-            while true; do
-              mapfile -d '' entries < <(
-                find "$current_dir" \
-                  -mindepth 1 \
-                  -maxdepth 1 \
-                  ! -name "__MACOSX" \
-                  ! -name ".DS_Store" \
-                  -print0
-              )
-
-              if [[ ${#entries[@]} -eq 1 && -d "${entries[0]}" ]]; then
-                current_dir="${entries[0]}"
-                echo "Removing wrapper folder: $current_dir"
-              else
-                break
-              fi
-            done
-
-            # Copy the final contents into the repository root.
-            rsync -a \
-              --exclude=".git/" \
-              --exclude=".github/" \
-              --exclude="*.zip" \
-              "$current_dir/" "./"
-
-            rm -rf "$temp_dir"
-
-            # Delete the processed ZIP file.
-            rm -f "$zip_file"
-          done < <(
-            find . \
-              -type f \
-              -name "*.zip" \
-              -not -path "./.git/*" \
-              -print0
+          result = subprocess.run(
+              ["git", "ls-files", "-z", "--", "*.zip"],
+              capture_output=True,
+              check=True,
           )
 
-          if [[ "$found_zip" == false ]]; then
-            echo "No ZIP files found."
-          fi
+          zip_files = [
+              root / os.fsdecode(name)
+              for name in result.stdout.split(b"\0")
+              if name
+          ]
+
+          if not zip_files:
+              print("No ZIP files found.")
+
+          for zip_path in zip_files:
+              if not zip_path.is_file():
+                  continue
+
+              print(f"Processing: {zip_path.relative_to(root)}")
+
+              with zipfile.ZipFile(zip_path) as archive:
+                  entries = []
+                  destinations = set()
+
+                  # Validate all entries before extraction.
+                  for item in archive.infolist():
+                      name = item.filename
+
+                      if not name:
+                          continue
+
+                      parts = PurePosixPath(name).parts
+
+                      if (
+                          name.startswith("/")
+                          or "\\" in name
+                          or ".." in parts
+                          or not parts
+                          or parts[0] in {".git", ".github"}
+                          or ":" in parts[0]
+                      ):
+                          raise ValueError(
+                              f"Unsafe ZIP path: {name}"
+                          )
+
+                      if (
+                          "__MACOSX" in parts
+                          or parts[-1] == ".DS_Store"
+                      ):
+                          continue
+
+                      mode = (
+                          item.external_attr >> 16
+                      ) & 0o170000
+
+                      if mode not in (
+                          0, stat.S_IFREG, stat.S_IFDIR
+                      ):
+                          raise ValueError(
+                              f"Unsupported ZIP entry: {name}"
+                          )
+
+                      target = root.joinpath(*parts)
+
+                      # Never follow existing symlink folders.
+                      for parent in target.parents:
+                          if parent == root.parent:
+                              break
+                          if parent.is_symlink():
+                              raise ValueError(
+                                  f"Symlink path: {name}"
+                              )
+
+                      if not item.is_dir():
+                          if (
+                              target.exists()
+                              or target.is_symlink()
+                              or target in destinations
+                          ):
+                              raise FileExistsError(
+                                  f"File already exists: {name}"
+                              )
+
+                          destinations.add(target)
+
+                      entries.append((item, target))
+
+                  # Extract directly into repository root.
+                  for item, target in entries:
+                      if item.is_dir():
+                          target.mkdir(
+                              parents=True,
+                              exist_ok=True
+                          )
+                          continue
+
+                      target.parent.mkdir(
+                          parents=True,
+                          exist_ok=True
+                      )
+
+                      with archive.open(item) as source:
+                          with target.open("xb") as output:
+                              shutil.copyfileobj(
+                                  source, output
+                              )
+
+                      print(
+                          f"Extracted: "
+                          f"{target.relative_to(root)}"
+                      )
+
+              zip_path.unlink()
+              print(f"Deleted ZIP: {zip_path.name}")
+
+          PY
 
       - name: Commit extracted files
         shell: bash
         run: |
-          if git diff --quiet && [[ -z "$(git status --porcelain)" ]]; then
+          set -euo pipefail
+
+          git add -A
+
+          if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -A
-          git commit -m "Extract ZIP contents"
+          git commit -m "Extract ZIP contents to root"
           git push
